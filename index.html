@@ -384,7 +384,7 @@ else if(t.dataset.sf&&t.files[0]){const f=t.files[0];if(f.size>5e6){t.value='';r
 setInterval(()=>{if(view==='tasks')loadT()},15000);
 
 /* ---------- РЕНДЕР / НАВИГАЦИЯ ---------- */
-const NAV=[['dash','📊 Дашборд / Мой Прогресс'],['levels','📚 Выбор Уровня и Карта Курсов'],['lesson','✏️ Текущий Урок'],['tasks','📝 Задания и оценки'],['dict','📖 Словарь'],['rules','📐 Правила'],['chat','🤖 AI Tutor Chat Studio'],['set','⚙️ Настройки и Профиль']];
+const NAV=[['dash','📊 Мой Прогресс'],['levels','📚 Выбор Уровня и Карта Курсов'],['lesson','✏️ Текущий Урок'],['tasks','📝 Задания и оценки'],['dict','📖 Словарь'],['rules','📐 Правила'],['chat','🤖 AI Tutor Chat Studio'],['set','⚙️ Настройки и Профиль']];
 $('#nav').innerHTML=NAV.map(([k,t])=>`<button data-v="${k}">${t}</button>`).join('');
 function side(){$('#th').textContent=S.theme==='light'?'🌙 Тёмная тема':'☀️ Светлая тема';$('#pn').textContent=S.name||'Гость';$('#av').style.backgroundImage=S.av?`url(${S.av})`:'';$('#av').textContent=S.av?'':(S.name||'?')[0].toUpperCase();$('#pl').textContent='Уровень '+S.level;$('#ps').textContent='🔥 '+S.streak+' дн. подряд';
 document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===view))}
