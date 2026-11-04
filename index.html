@@ -132,8 +132,11 @@ main{padding:64px 16px 110px}
 /* ============================================================
    ⚠️ GEMINI API KEY — вставьте ключ здесь (в коде), не в UI.
    ============================================================ */
-const GEMINI_KEY='ВСТАВЬТЕ_ВАШ_API_КЛЮЧ_ЗДЕСЬ';
-const GEMINI_MODEL='gemini-2.0-flash-lite';
+const GEMINI_KEY='AQ.Ab8RN6KVShenFwRyfgZAghN5YdWQBuXX2tQ5zISZsA-fGWDrKg';
+const GEMINI_MODELS={
+  single:['gemini-2.0-flash-lite','gemini-2.0-flash','gemini-2.5-flash'],
+  batch:['gemini-2.5-flash','gemini-2.0-flash','gemini-2.0-flash-lite']
+};
 
 /* ============================================================
    KEYWORDS (включая слова из Reading)
