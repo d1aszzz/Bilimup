@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bilimup — English Platform</title>
+<style>
+:root{--bg:#0b1024;--tx:#eaf0ff;--mu:#93a0c6;--ac:#5eead4;--ac2:#8b5cf6;--ok:#34d399;--bad:#f87171;--wn:#fbbf24;--gl:rgba(255,255,255,.06);--bd:rgba(255,255,255,.13);--in:rgba(0,0,0,.25);--sf:#141a3a;--hv:rgba(255,255,255,.08);--g1:#26307a55;--g2:#0f766e55;color-scheme:dark}
+[data-theme=light]{--bg:#eef2ff;--tx:#1b2140;--mu:#5b6488;--ac:#0d9488;--ok:#059669;--bad:#dc2626;--wn:#b45309;--gl:rgba(255,255,255,.72);--bd:rgba(30,40,100,.15);--in:rgba(255,255,255,.9);--sf:#fff;--hv:rgba(30,40,100,.07);--g1:#a5b4fc77;--g2:#99f6e488;color-scheme:light}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--tx);background:radial-gradient(900px 600px at 10% -10%,var(--g1),transparent),radial-gradient(700px 500px at 100% 100%,var(--g2),transparent),var(--bg);display:flex;line-height:1.5}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.glass{background:var(--gl);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--bd);border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+aside{width:270px;flex:none;padding:18px;display:flex;flex-direction:column;gap:16px;height:100%;overflow:auto;border-radius:0 22px 22px 0;z-index:20;transition:transform .3s}
+.logo{font-weight:800;font-size:19px;letter-spacing:-.3px}.logo small{display:block;font-weight:500;font-size:12px;color:var(--mu)}
+.prof{display:flex;gap:12px;align-items:center;padding:12px}
+.av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--ac2),var(--ac));display:grid;place-items:center;font-weight:800;font-size:20px;color:#0b1024;flex:none;background-size:cover;background-position:center}.av.sm{width:34px;height:34px;font-size:14px}
+.prof b{display:block}.prof span{font-size:13px;color:var(--mu)}
+nav{display:flex;flex-direction:column;gap:6px}
+nav button{background:none;border:1px solid transparent;text-align:left;padding:11px 13px;border-radius:12px;color:var(--mu);transition:.2s}
+nav button:hover{background:var(--gl);color:var(--tx)}
+nav button.on{background:linear-gradient(90deg,#8b5cf633,#5eead422);border-color:var(--bd);color:var(--tx)}
+main{flex:1;min-width:0;height:100%;overflow:auto;padding:26px 30px 110px}
+.fade{animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+h1{font-size:28px;letter-spacing:-.5px;margin-bottom:6px}h2{font-size:19px;margin:24px 0 12px}
+h3{margin:16px 0 8px}
+p.sub{color:var(--mu);margin-bottom:16px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.card{padding:16px}
+.stat b{font-size:30px;display:block;letter-spacing:-1px}.stat span{color:var(--mu);font-size:13px}
+.bar{height:8px;border-radius:9px;background:var(--hv);overflow:hidden;margin-top:10px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--ac2),var(--ac));transition:width .5s}
+.btn{background:linear-gradient(90deg,var(--ac2),#6366f1);border:0;padding:11px 20px;border-radius:12px;font-weight:700;color:#fff;transition:.2s}
+.btn:hover{filter:brightness(1.12)}.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.g{background:var(--gl);border:1px solid var(--bd)}
+.ls{display:flex;align-items:center;gap:12px;padding:12px 16px;margin-bottom:8px;width:100%;text-align:left;border-radius:14px;background:var(--gl);border:1px solid var(--bd)}
+.ls em{margin-left:auto;font-style:normal;font-size:13px}
+.vid{aspect-ratio:16/9;width:100%;border:0;border-radius:14px;background:#000}
+textarea{width:100%;min-height:110px;margin-top:8px;background:var(--in);border:1px solid var(--bd);border-radius:12px;padding:12px;resize:vertical}
+input.nm,select.nm{width:100%;padding:12px;margin:10px 0;border-radius:12px;border:1px solid var(--bd);background:var(--in)}
+input.line{background:var(--in);border:1px solid var(--bd);border-radius:8px;padding:6px 10px;min-width:140px}
+.cnt{display:inline-block;margin-top:8px;padding:4px 12px;border-radius:99px;font-weight:700;font-size:13px}
+.cnt.r,.bg.r{background:#f8717133;color:var(--bad)}.cnt.g,.bg.g{background:#34d39933;color:var(--ok)}
+.bg{font-size:12px;padding:3px 10px;border-radius:99px;margin-left:8px;vertical-align:middle;font-weight:600}
+.art{margin-bottom:14px;color:var(--tx);max-width:75ch;white-space:pre-wrap}
+.q{margin-bottom:14px}.opt{display:block;width:100%;text-align:left;margin-top:6px;padding:9px 13px;border-radius:10px;background:var(--hv);border:1px solid var(--bd);transition:.15s}
+.opt:hover{border-color:var(--ac)}.opt.ok,input.ok{background:#34d39926;border-color:var(--ok)}.opt.bad,input.bad{background:#f8717126;border-color:var(--bad)}
+.gap{line-height:2.4;font-size:17px;max-width:75ch}
+.gap input{background:var(--in);border:1px solid var(--bd);border-radius:8px;padding:3px 8px;text-align:center;min-width:60px}
+.mod{position:fixed;inset:0;background:rgba(5,8,20,.75);backdrop-filter:blur(6px);display:grid;place-items:center;z-index:60;padding:16px;overflow:auto}
+.mod .glass{max-width:560px;width:100%;padding:26px;background:var(--sf)}
+#fab{position:fixed;right:20px;bottom:20px;width:58px;height:58px;border-radius:50%;border:0;font-size:26px;background:linear-gradient(135deg,var(--ac2),var(--ac));box-shadow:0 8px 24px #8b5cf688;z-index:40;transition:.2s}
+#fab:hover{transform:scale(1.08)}
+#chat{position:fixed;right:20px;bottom:90px;width:360px;max-width:calc(100vw - 32px);height:460px;max-height:calc(100% - 120px);display:none;flex-direction:column;z-index:41;background:var(--sf);overflow:hidden}
+#chat.open{display:flex;animation:in .25s}
+#chat header{padding:12px 16px;font-weight:700;border-bottom:1px solid var(--bd)}
+#msgs{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
+.m{max-width:85%;padding:9px 13px;border-radius:14px;font-size:14px;white-space:pre-wrap}.m.u{align-self:flex-end;background:var(--ac2)}.m.b{background:var(--hv)}
+#cf{display:flex;gap:8px;padding:10px;border-top:1px solid var(--bd)}#cf input{flex:1;padding:9px 12px;border-radius:10px;border:1px solid var(--bd);background:var(--in)}
+#toast{position:fixed;top:18px;left:50%;transform:translateX(-50%);background:#0f766e;padding:10px 20px;border-radius:12px;z-index:80;display:none;font-weight:600}
+#burger{display:none}
+@media(max-width:820px){
+body{display:block}
+aside{position:fixed;left:0;top:0;transform:translateX(-105%);background:var(--sf);width:280px}
+aside.open{transform:none}
+#burger{display:block;position:fixed;top:12px;left:12px;z-index:30;padding:8px 13px;border-radius:12px;background:var(--sf);border:1px solid var(--bd)}
+main{padding:64px 16px 110px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.err{border-left:3px solid var(--bad);padding:8px 12px;margin:8px 0;background:var(--hv);border-radius:8px}.err.good{border-color:var(--ok)}
+.tfrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:8px 0;padding:8px 10px;border-radius:10px;background:var(--hv)}
+.tfrow b{flex:1;min-width:200px}
+.tfrow button{padding:6px 12px;border-radius:8px;border:1px solid var(--bd);background:var(--gl)}
+.tfrow button.on{background:var(--ac2);border-color:var(--ac2);color:#fff}
+.bookgrid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+.bookcard{text-align:left;padding:0;overflow:hidden;border-radius:16px;background:var(--gl);border:1px solid var(--bd);transition:.2s;display:flex;flex-direction:column}
+.bookcard:hover{transform:translateY(-3px);border-color:var(--ac)}
+.bookcard .cover{aspect-ratio:3/4;width:100%;background:var(--hv);display:grid;place-items:center;overflow:hidden}
+.bookcard .cover img{width:100%;height:100%;object-fit:cover;display:block}
+.bookcard .meta{padding:10px 12px}
+.bookcard .meta b{display:block;font-size:15px}
+.bookcard .meta span{font-size:12px;color:var(--mu)}
+.bookdetail{display:grid;grid-template-columns:220px 1fr;gap:20px;align-items:start}
+@media(max-width:700px){.bookdetail{grid-template-columns:1fr}}
+.bookdetail .cover{aspect-ratio:3/4;border-radius:14px;background:var(--hv);overflow:hidden;display:grid;place-items:center}
+.bookdetail .cover img{width:100%;height:100%;object-fit:cover}
+.hint{font-size:12px;color:var(--mu)}
+.word{display:inline-block;padding:1px 5px;border-radius:6px;background:#8b5cf626;border-bottom:1px dashed var(--ac);cursor:pointer;color:var(--tx);font-weight:600}
+.word:hover{background:#8b5cf655}
+.word .star{font-size:11px;color:var(--wn);margin-left:2px}
+.flash-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));perspective:1200px}
+.flip{position:relative;width:100%;min-height:170px;cursor:pointer;transform-style:preserve-3d;transition:transform .5s}
+.flip.open{transform:rotateY(180deg)}
+.flip .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;border:1px solid var(--bd);background:var(--gl);padding:14px;display:flex;flex-direction:column;gap:8px;justify-content:center;align-items:center;text-align:center;overflow:auto}
+.flip .face.back{transform:rotateY(180deg);align-items:flex-start;text-align:left;font-size:14px}
+.flip .face b{font-size:20px;color:var(--tx)}
+.flip .face .meaning{font-size:14px;color:var(--tx)}
+.flip .face .kk{font-size:14px;color:var(--ac);font-weight:600}
+.flip .face .muted{color:var(--mu);font-size:12px}
+.word-detail{padding:14px 16px}
+.word-detail h2{margin:0 0 6px;font-size:24px}
+.word-detail .meaning{font-size:16px;margin:10px 0}
+.word-detail .kk{font-size:16px;color:var(--ac);font-weight:700;margin:6px 0 12px}
+.rowflex{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.opt.sel{background:rgba(139,92,246,.30);border-color:var(--ac2)}
+</style>
+</head>
+<body>
+<button id="burger" aria-label="Меню">☰</button>
+<aside class="glass">
+  <div class="logo">✦ Bilimup<small>English Platform · B1</small></div>
+  <div class="prof glass"><div class="av" id="av">?</div><div><b id="pn">Гость</b><span id="pl"></span><br><span id="ps"></span></div></div>
+  <nav id="nav"></nav>
+  <button class="btn g" id="th" style="margin-top:auto"></button>
+</aside>
+<main id="main"></main>
+<button id="fab" aria-label="Open AI tutor">🤖</button>
+<section id="chat" class="glass" aria-label="Bilimup AI">
+  <header id="chead">🤖 Bilimup AI — tutor</header>
+  <div id="msgs"></div>
+  <div id="cf"><input id="ci" placeholder="Ask about grammar..." autocomplete="off"><button class="btn" id="cs">→</button></div>
+</section>
+<div id="toast"></div>
+<div id="ob" class="mod" style="display:none"></div>
+<div id="wordmod" class="mod" style="display:none"></div>
+
+<script>
+/* ============================================================
+   ⚠️ GEMINI API KEY — вставьте ключ здесь (в коде), не в UI.
+   ============================================================ */
+const GEMINI_KEY='ВСТАВЬТЕ_ВАШ_API_КЛЮЧ_ЗДЕСЬ';
+const GEMINI_MODEL='gemini-2.0-flash-lite';
+
+/* ============================================================
+   KEYWORDS (включая слова из Reading)
+   ============================================================ */
+const KEYWORDS=[
+ 'article|1','determiner|1','partitive|1','countable|1','uncountable|1','convenience|1','nutritionist|1','refined|1','sodium|1','produce|1','processed|1','intake|1',
+ 'stative|2','commute|2','get used to|2','be used to|2','used to|2','contract|2','pace|2','urban|2',
+ 'reported speech|3','introductory verb|3','infinitive|3','-ing form|3','deny|3','encourage|3','suggest|3','promise|3','misunderstanding|3',
+ 'present perfect|4','present perfect continuous|4','suffix|4','biodegradable|4','distributor|4','innovation|4','competitive|4',
+ 'comparative|4','superlative|4','adverb|4','fluently|4','laid-back|4','accommodation|4',
+ 'modal verb|5','obligation|5','necessity|5','permission|5','deduction|5','needn\'t|5','mustn\'t|5','ought to|5',
+ 'past simple|6','past continuous|6','past perfect|6','past modal|6','surge|6','mainframe|6','butler|6','shattered|6',
+ 'passive voice|7','causative|7','have something done|7','get something done|7','deactivate|7','incapacitate|7','surveillance|7',
+ 'conditional|8','first conditional|8','second conditional|8','third conditional|8','mixed conditional|8','wish|8','if only|8','prefix|8','misunderstand|8','underpaid|8','overcook|8',
+ 'relative clause|9','defining relative clause|9','non-defining relative clause|9','concession|9','purpose|9','result|9','question tag|9','persuasive|9','curriculum|9',
+ 'presentation skill|10','audience|10','confidence|10','nervous|10','prepare|10',
+ /* слова из Reading */
+ 'remote|1','flexibility|1','interruption|1','colleague|1','hybrid|1','lonely|1','open-plan office|1',
+ 'challenging|2','progress|2','context|2','motivated|2','goal|2','podcast|2','subtitle|2','diary|2',
+ 'concentrate|3','screen|3','chemical|3','relax|3','habit|3','teenager|3','emotional|3','patient|3',
+ 'stall|4','recipe|4','festival|4','customer|4','neighbourhood|4','traveller|4','simit|4','taco|4',
+ 'cyclist|5','helmet|5','lorry|5','cycle lane|5','mood|5','employer|5','parking space|5',
+ 'social media|6','compare|6','cyberbullying|6','cruel|6','digital skill|6','celebrity|6','support|6',
+ 'volunteer|7','enthusiastic|7','confident|7','community|7','swahili|7','basket|7','grant|7',
+ 'cocoa|8','bitter|8','explorer|8','solid|8','substance|8','crop|8','moderation|8',
+ 'review|9','packaging|9','delivery|9','virtual|9','data|9','return|9','delivery|9',
+ 'urban garden|10','balcony|10','roof|10','herb|10','seed|10','grant|10','lettuce|10','tomato|10'
+];
+const KW_LESSON={};
+KEYWORDS.forEach(s=>{const [w,n]=s.split('|');KW_LESSON[w.toLowerCase()]=+n});
+
+/* ============================================================
+   WB (уроки)
+   ============================================================ */
+const WB=[
+{n:1,video:'goeadBUjdeo',focus:'Articles, Determiners, Too / Enough, Partitives, Countable & Uncountable Nouns',
+ tasks:[
+ {type:'mc',title:'Task 1. Multiple Choice Reading',text:`Modern lifestyles have drastically altered how we eat. In the past, families sat down together for three cooked meals a day. Today, many young professionals consume much of their food on the go. Nutritionists warn that reliance on convenience products leads to excessive intake of refined sugars and sodium. Moreover, the average urban worker drinks several cups of coffee daily but fails to consume enough water. To maintain optimal health, experts suggest buying fresh produce, drinking at least two liters of water, and reducing processed snacks.`,
+  q:[
+  {q:'According to the text, how have eating habits changed?',o:['People cook more meals at home.','People frequently eat while traveling or working.','People eat fewer meals than before.','Families spend more time together at dinner.'],c:1},
+  {q:'What issue associated with convenience food is highlighted?',o:['High cost and low quality.','Lack of flavor and variety.','High levels of sugar and salt.','Short shelf life.'],c:2},
+  {q:'What is recommended regarding fluid intake?',o:['Drink more fruit juice.','Limit coffee to one cup per week.','Consume a sufficient quantity of water daily.','Drink coffee instead of water.'],c:2},
+  {q:'What advice is given for a healthier lifestyle?',o:['Avoid all carbohydrates.','Buy fresh fruits and vegetables.','Skip breakfast daily.','Drink energy drinks.'],c:1}]},
+ {type:'tf',title:'Task 2. True / False / Not Stated',items:[
+  {s:'Plant-based diets have gained widespread popularity across Europe in recent years.',c:'NS'},
+  {s:'Processed food contains fewer preservatives than freshly cooked meals.',c:'F'},
+  {s:'Drinking excessive amounts of coffee increases blood pressure in all individuals.',c:'NS'},
+  {s:'Consuming enough fiber helps prevent digestive health issues.',c:'T'}]},
+ {type:'gap',title:'Task 3. Gap Filling',text:`We don't have {0} water left in the container; please buy {1} bottle on your way home.
+Is there {2} sugar in this tea, or would you like me to add another spoonful?
+There are {3} people in the queue; we won't have {4} time to catch our train.
+He bought a loaf of bread, a bar of chocolate, and {5} fresh milk from the local dairy.`,
+  a:[['any'],['a'],['any','some'],['too many','many'],['enough'],['some']]},
+ {type:'tfrm',title:'Task 4. Sentence Transformation (2–5 words)',items:[
+  {s:'The soup is so hot that I cannot drink it. (TOO)',c:'The soup is too hot to drink.'},
+  {s:'She doesn\'t have the required age to enter the club. (OLD)',c:'She is not old enough to enter the club.'},
+  {s:'We have very little flour remaining, so we cannot bake a cake. (ENOUGH)',c:'We do not have enough flour to bake a cake.'},
+  {s:'There were so many tourists that we couldn\'t enjoy the view. (MANY)',c:'There were too many tourists for us to enjoy the view.'}]}
+]},
+{n:2,video:'V8sN79nJfHo',focus:'Present Simple & Present Continuous, Stative Verbs, Used to / Be used to / Get used to, Adjectives',
+ tasks:[
+ {type:'match',title:'Task 1. Multiple Matching (extra letter E)',left:[
+  {s:'Speaker 1: "I used to commute by car every morning, but now I am trying to ride a bicycle to stay fit."'},
+  {s:'Speaker 2: "I am currently living in London for a six-month contract, so I am slowly getting used to the rainy weather."'},
+  {s:'Speaker 3: "My brother works from home, so he usually starts his day early and finishes by three in the afternoon."'},
+  {s:'Speaker 4: "I hate waking up early, but my new job requires me to start at 7:00 AM every single day."'}],
+  right:['A) Adapting to a temporary location and climate.','B) Dislikes a routine requirement of a new position.','C) Works fixed hours and finishes early.','D) Changed a long-term transportation habit to improve health.','E) Refuses to work during weekends.'],c:['D','A','C','B']},
+ {type:'err',title:'Task 2. Error Correction / CORRECT',items:[
+  {s:'I am owning three different apartments in the city center.',c:'I own three different apartments in the city center.'},
+  {s:'Right now, she is thinking that learning English is very beneficial.',c:'Right now, she thinks that learning English is very beneficial.'},
+  {s:'They are building a new shopping mall near our house this month.',c:'CORRECT'},
+  {s:'He is understanding the lesson clearly today.',c:'He understands the lesson clearly today.'}]},
+ {type:'read',title:'Task 3. Reading Comprehension (full sentences)',text:`Living in Tokyo presents a unique blend of traditional customs and high-tech convenience. Kenji, a software developer, used to live in a quiet rural village in Nagano. Today, he lives in a compact city apartment and travels on crowded trains every morning. "At first, the noise bothered me," he explains. "However, I am gradually getting used to the pace of urban life. Right now, our company is developing a new mobile application, so I am working longer hours than usual."`,
+  q:['Where did Kenji live before moving to Tokyo?','How does Kenji travel to work every morning?','How does he feel about the fast pace of city life now?','Why is Kenji working longer hours at the moment?'],
+  a:['He used to live in a quiet rural village in Nagano.','He travels on crowded trains every morning.','He is gradually getting used to the pace of urban life.','Because his company is developing a new mobile application, so he is working longer hours than usual.']},
+ {type:'complete',title:'Task 4. used to / be used to / get used to',items:[
+  {s:'When I lived near the railway station, I ______ (hear) trains passing at all hours.',c:'used to hear'},
+  {s:'It was difficult at first, but she is slowly ______ (drive) on the left side of the road.',c:'getting used to driving'},
+  {s:'Don\'t worry about the cold wind; outdoor workers ______ (be) in harsh weather conditions.',c:'are used to being'},
+  {s:'Did you ______ (play) computer games when you were in primary school?',c:'use to play'}]}
+]},
+{n:3,video:'ZTPqEkSZZQQ',focus:'-ing Form / Infinitive, Reported Speech, Introductory Verbs, Negative Adjectives',
+ tasks:[
+ {type:'insert',title:'Task 1. Gapped Text (one extra sentence A–D)',text:`Effective communication is essential in any corporate environment. Management experts strongly advise employees to develop active listening skills. [ 1 ] Furthermore, supervisors frequently remind staff to avoid making rash judgments during team meetings. [ 2 ] When disagreements arise, managers suggest holding open discussions rather than ignoring the problem. [ 3 ]`,
+  opts:['A) Failing to address misunderstandings often results in inefficient working relationships.','B) They promise to give financial bonuses to everyone every month.','C) This practice prevents unnecessary errors and builds mutual respect.','D) In addition, refusing to cooperate with colleagues can lead to an unpleasant atmosphere.'],c:['C','A','D']},
+ {type:'report',title:'Task 2. Direct → Reported Speech',items:[
+  {s:'"I will definitely pay you back tomorrow," said Sarah. (PROMISED)',c:'Sarah promised to pay me back the next day.'},
+  {s:'"You should apply for the senior position," the mentor told me. (ENCOURAGED)',c:'The mentor encouraged me to apply for the senior position.'},
+  {s:'"I did not steal the confidential documents," said the clerk. (DENIED)',c:'The clerk denied stealing the confidential documents.'},
+  {s:'"Let\'s organize a fundraising event this Friday," suggested Mark. (SUGGESTED)',c:'Mark suggested organizing a fundraising event that Friday.'}]},
+ {type:'wform',title:'Task 3. Negative Adjectives (un-, in-, im-, ir-, dis-)',items:[
+  {s:'It is completely ______ to expect a full recovery without proper medical care. (POSSIBLE)',c:'impossible'},
+  {s:'The manager was criticized for making an ______ decision during the crisis. (RATIONAL)',c:'irrational'},
+  {s:'Leaving young children unattended near water is highly ______. (RESPONSIBLE)',c:'irresponsible'},
+  {s:'Due to technical issues, the internet connection remained ______ all morning. (STABLE)',c:'unstable'}]},
+ {type:'cloze',title:'Task 4. Multiple Choice Cloze',text:'The company director admitted 1) ___ poor financial choices last quarter. He promised 2) ___ working conditions and offered 3) ___ staff feedback immediately. Employees expressed concern over 4) ___ management decisions.',
+  q:[{o:['make','making','to make','made'],c:1},{o:['improve','improving','to improve','improved'],c:2},{o:['review','to review','reviewing','reviewed'],c:1},{o:['efficient','inefficient','efficiency','efficiently'],c:1}]}
+]},
+{n:4,video:'YBd5nczQKRg',focus:'Present Perfect & Present Perfect Continuous, Adjective Endings (-ful, -less, -ive, -able)',
+ tasks:[
+ {type:'tf',title:'Task 1. True / False / Not Stated',text:`Elena Rostova has been managing her eco-friendly packaging company since 2018. Over the past eight years, her firm has grown into a major international distributor. Recently, her team has been designing fully biodegradable containers made from agricultural waste. Investors have pledged millions of dollars to support her expansion into Asian markets. Elena believes that persistent innovation is the key to maintaining a competitive edge.`,
+  items:[
+  {s:'Elena has owned her business for more than ten years.',c:'F'},
+  {s:'Her company produces packaging from agricultural waste products.',c:'T'},
+  {s:'She plans to open a new physical factory in Tokyo next month.',c:'NS'},
+  {s:'Financial backers have agreed to provide significant funding for market expansion.',c:'T'}]},
+ {type:'complete',title:'Task 2. Present Perfect Simple / Continuous',items:[
+  {s:'Dr. Aris ______ (conduct) research on renewable energy sources for over a decade.',c:'has been conducting'},
+  {s:'The scientific committee ______ (publish) three major papers on climate change this year.',c:'has published'},
+  {s:'How long ______ you ______ (look) for a suitable apartment in the city center?',c:'have you been looking'},
+  {s:'She ______ (not / finish) writing her dissertation report yet.',c:'has not finished'}]},
+ {type:'wform',title:'Task 3. Adjective Formation (-ful, -less, -ive, -able)',items:[
+  {s:'The new software provides a highly ______ tool for data analysis. (USE)',c:'useful'},
+  {s:'After hours of fruitless searching, the detective felt completely ______. (HOPE)',c:'hopeless'},
+  {s:'The candidate demonstrated highly ______ communication skills during the interview. (IMPRESS)',c:'impressive'},
+  {s:'We need to find a ______ solution to our current budget deficit. (SUSTAIN)',c:'sustainable'}]},
+ {type:'head',title:'Task 4. Matching Headings (one extra)',paras:[
+  'Paragraph 1: Researchers have been analyzing ancient artifacts discovered in Egypt. Their findings have yielded valuable insights into early technological advancements and construction methodologies.',
+  'Paragraph 2: Engineers have recently developed an automated printing system capable of building concrete structures within forty-eight hours, significantly reducing labor expenses.',
+  'Paragraph 3: Environmentalists have been warning authorities about rising urban sea levels. Consequently, municipal boards have implemented modern coastal defense projects.'],
+  opts:['A) Modern Solutions to Environmental Hazards','B) Historical Insights Through Archaeological Discoveries','C) Revolutionizing Construction via Automation','D) Traditional Methods of Agricultural Production'],c:['B','C','A']}
+]},
+{n:5,video:'Y2IfxfOgjjY',focus:'Adjectives & Adverbs, Comparison Structures, Adjective Suffixes',
+ tasks:[
+ {type:'mc',title:'Task 1. Reading Multiple Choice',text:`While both Paris and Berlin attract millions of visitors annually, they offer distinctly different urban environments. Paris features significantly higher accommodation costs and denser traffic. Conversely, Berlin provides a considerably more relaxed atmosphere with abundant green spaces. Public transport in Berlin runs somewhat more efficiently than in Paris during night hours, whereas Paris boasts a far richer selection of classical architecture.`,
+  q:[
+  {q:'How do accommodation costs compare between the two cities?',o:['Berlin is much more expensive than Paris.','Paris is notably more costly than Berlin.','Prices are virtually identical in both places.','Neither city charges high rates.'],c:1},
+  {q:'What advantage does Berlin offer regarding city atmosphere?',o:['It is far noisier and livelier.','It has a substantially more laid-back feel.','It features fewer parks and public gardens.','It lacks modern cultural venues.'],c:1},
+  {q:'According to the text, night transport in Berlin is:',o:['Less reliable than in Paris.','Slightly more efficient than in Paris.','Extremely expensive.','Unavailable on weekends.'],c:1}]},
+ {type:'tfrm',title:'Task 2. Sentence Transformations (Comparisons)',items:[
+  {s:'No other restaurant in town is as popular as Bistro Bella. (BY FAR)',c:'Bistro Bella is by far the most popular restaurant in town.'},
+  {s:'The original model was significantly less efficient than this upgraded version. (MUCH)',c:'This upgraded version is much more efficient than the original model.'},
+  {s:'As you practice more, you will perform better. (THE)',c:'The more you practice, the better you will perform.'},
+  {s:'She speaks French far more fluently than her brother. (AS)',c:'Her brother does not speak French nearly as fluently as she does.'}]},
+ {type:'wform',title:'Task 3. Word Derivation (Adjective Suffixes)',text:`Visiting the mountain resort was a truly 1) ______ (MEMORIZE) experience. The landscape was breathtakingly 2) ______ (PICTURE), and the local inhabitants were exceptionally 3) ______ (HOSPITAL). We enjoyed a 4) ______ (REST) weekend away from city pollution.`,
+  items:[
+  {s:'1) (MEMORIZE)',c:'memorable'},
+  {s:'2) (PICTURE)',c:'picturesque'},
+  {s:'3) (HOSPITAL)',c:'hospitable'},
+  {s:'4) (REST)',c:'restful'}]},
+ {type:'err',title:'Task 4. Error Correction: Adjectives & Adverbs',items:[
+  {s:'He drives much more careful when it rains heavily.',c:'He drives much more carefully when it rains heavily.'},
+  {s:'This is the most worst service I have ever experienced in a hotel.',c:'This is the worst service I have ever experienced in a hotel.'},
+  {s:'She felt bad after receiving the negative feedback from her director.',c:'CORRECT'},
+  {s:'The economic situation is getting more and more hard every month.',c:'The economic situation is getting harder and harder every month.'}]}
+]},
+{n:6,video:'7tpx2grX6Pc',focus:'Modal Verbs (Obligation, Necessity, Permission, Deduction), Word Formation',
+ tasks:[
+ {type:'match',title:'Task 1. Multiple Matching (extra letter E)',left:[
+  {s:'Situation 1: An employee wants to enter the secure server room to perform maintenance.'},
+  {s:'Situation 2: A team member feels unwell during normal office working hours.'},
+  {s:'Situation 3: Staff members are preparing to leave the office at the end of the day.'},
+  {s:'Situation 4: A worker needs to purchase new stationeries for an office event.'}],
+  right:['A) You must notify human resources and submit a medical note within 24 hours.','B) You needn\'t ask for permission if the total expense is under twenty dollars.','C) You ought to book a personal holiday three months in advance.','D) All non-authorized personnel mustn\'t enter without security clearance.','E) Employees should ensure all electrical appliances and lights are switched off.'],c:['D','A','E','B']},
+ {type:'modal',title:'Task 2. Sentence Rewriting (Modals)',items:[
+  {s:'It is strictly forbidden to smoke inside the laboratory building.',c:'You mustn\'t smoke inside the laboratory building.'},
+  {s:'It is not necessary for you to attend the orientation seminar if you are busy.',c:'You needn\'t attend the orientation seminar if you are busy.'},
+  {s:'I am certain that he is at home because his vehicle is parked outside.',c:'He must be at home because his vehicle is parked outside.'},
+  {s:'It is advisable for us to review the safety guidelines prior to operating the machinery.',c:'We should review the safety guidelines prior to operating the machinery.'}]},
+ {type:'wform',title:'Task 3. Word Formation Cloze',items:[
+  {s:'Employees must follow all safety regulations to prevent ______ injury. (INTENTION)',c:'intentional'},
+  {s:'The board issued a formal ______ regarding the upcoming restructuring. (ANNOUNCE)',c:'announcement'},
+  {s:'Regular exercise contributes to the ______ of overall physical endurance. (MAINTAIN)',c:'maintenance'},
+  {s:'Her performance during the crisis was highly ______. (PRAISE)',c:'praiseworthy'}]},
+ {type:'tf',title:'Task 4. True / False Reading (Safety)',text:`LABORATORY SAFETY PROTOCOL: All researchers must wear protective eyewear and lab coats at all times. Eating or drinking inside the testing facility is strictly prohibited. You needn't wear heavy gloves when operating digital keyboards, but you must wear them when handling chemical reagents. In the event of a fire alarm, personnel should exit via the northern emergency stairway immediately.`,
+  items:[
+  {s:'Protective eyewear is optional during basic testing procedures.',c:'F'},
+  {s:'Staff members are permitted to consume beverages at digital workstations.',c:'F'},
+  {s:'Chemical reagents may be handled without protective gloves.',c:'F'},
+  {s:'Individuals should use the northern stairs during an emergency evacuation.',c:'T'}]}
+]},
+{n:7,video:'B4GCPw2JHbM',focus:'Past Tenses, Past Modals, Verb Suffixes (-ize, -en, -ify)',
+ tasks:[
+ {type:'insert',title:'Task 1. Gapped Text (A–C)',text:`Detective Vance arrived at the manor house late at night. Rain was pouring heavily, and the wind was howling through the trees. [ 1 ] Upon inspecting the study, Vance noticed that someone had shattered the display glass. [ 2 ] The safe was sitting wide open, completely empty. The suspect must have known the combination code in advance. [ 3 ]`,
+  opts:['A) The family butler insisted that he had locked all external doors at ten o\'clock.','B) Documents were scattered across the floor, suggesting a desperate search.','C) A faint light was flickering inside the ground-floor library window.'],c:['C','B','A']},
+ {type:'cloze',title:'Task 2. Past Tenses (Past Simple / Continuous / Perfect)',text:'While the technicians 1) ___ the mainframe server, a sudden power surge 2) ___ the entire network. Fortunately, the automated system 3) ___ all critical files before the crash occurred.',
+  q:[{o:['repaired','were repairing','had repaired','repair'],c:1},{o:['disabled','was disabling','had disabled','disables'],c:0},{o:['saved','was saving','had saved','saves'],c:2}]},
+ {type:'pastmodal',title:'Task 3. Past Modals (must have / could have / should have / couldn\'t have)',items:[
+  {s:'The missing climber ______ reached the summit without thermal gear; it was minus twenty degrees!',o:['must have','couldn\'t have','should have'],c:1},
+  {s:'You ______ warned us about the traffic delay; we missed the beginning of the concert.',o:['should have','must have','couldn\'t have'],c:0},
+  {s:'The floor is soaked. It ______ leaked from the broken pipe overhead during the night.',o:['should have','must have','couldn\'t have'],c:1}]},
+ {type:'wform',title:'Task 4. Verb Suffix Word Formation (-ize, -en, -ify)',items:[
+  {s:'They decided to ______ the old security system by adding facial recognition technology. (MODERN)',c:'modernize'},
+  {s:'Cold weather conditions tend to ______ road surfaces, making driving dangerous. (HARD)',c:'harden'},
+  {s:'Could you please ______ your instructions? We didn\'t fully understand the final point. (CLEAR)',c:'clarify'},
+  {s:'The council plans to ______ the local park by planting dozens of new trees. (BEAUTY)',c:'beautify'}]}
+]},
+{n:8,video:'WJJqMIFSW7g',focus:'Passive Voice, Causative Form, -ing / -ed Adjectives',
+ tasks:[
+ {type:'passive',title:'Task 1. Active → Passive',items:[
+  {s:'The construction company will complete the new bridge construction by October.',c:'The new bridge will be completed by the construction company by October.'},
+  {s:'Technicians are currently updating the company databases.',c:'The company databases are currently being updated by technicians.'},
+  {s:'The committee had approved the new budget before the meeting ended.',c:'The new budget had been approved by the committee before the meeting ended.'},
+  {s:'You must store all hazardous chemicals in locked cabinets.',c:'All hazardous chemicals must be stored in locked cabinets.'}]},
+ {type:'causative',title:'Task 2. Causative (have / get something done)',items:[
+  {s:'A mechanic serviced Mr. Harrison\'s car yesterday morning.',c:'Mr. Harrison had his car serviced yesterday morning.'},
+  {s:'A professional photographer will take our family portrait tomorrow.',c:'We will have our family portrait taken tomorrow.'},
+  {s:'An optician is checking my eyesight at 4:00 PM today.',c:'I am having my eyesight checked at 4:00 PM today.'},
+  {s:'Cleaners have sanitized the entire office floor following the renovation.',c:'The firm has had the entire office floor sanitized following the renovation.'}]},
+ {type:'mc',title:'Task 3. Reading Multiple Choice (Passive in News)',text:`A rare painting by a Renaissance master was stolen from the city gallery last night. The alarm system was deactivated shortly after midnight, and security guards were incapacitated by unknown intruders. Police officers have been reviewing footage captured by nearby surveillance cameras. The stolen artwork is estimated to be worth over ten million dollars.`,
+  q:[
+  {q:'When was the artwork taken?',o:['During broad daylight.','Last night.','Two weeks ago.','During gallery hours.'],c:1},
+  {q:'What happened to the alarm system?',o:['It sounded loudly across the block.','It was damaged by a electrical storm.','It was turned off shortly after midnight.','It functioned perfectly without interruption.'],c:2},
+  {q:'What step are law enforcement officials taking?',o:['Selling security equipment.','Examining surveillance camera records.','Closing all galleries permanently.','Re-painting the missing artwork.'],c:1}]},
+ {type:'mc',title:'Task 4. -ing / -ed Adjectives',text:'Choose the correct adjective form for each sentence.',
+  q:[
+  {q:'The long flight across the Atlantic was extremely ___ .',o:['exhausting','exhausted'],c:0},
+  {q:'She felt completely ___ by the lecturer\'s presentation on ancient history.',o:['fascinating','fascinated'],c:1},
+  {q:'It was a very ___ result given how hard the team had trained.',o:['disappointing','disappointed'],c:0},
+  {q:'The children were ___ to receive tickets to the theme park.',o:['thrilling','thrilled'],c:1}]}
+]},
+{n:9,video:'lGcXggbeLH8',focus:'Future Forms, Conditionals (1–3 & Mixed), Wishes, Prefixes (dis-, mis-, over-, under-)',
+ tasks:[
+ {type:'cond',title:'Task 1. Conditionals Matching',left:[
+  {s:'If the government invests heavily in solar infrastructure,'},
+  {s:'If we had checked the weather forecast yesterday,'},
+  {s:'If I were the CEO of this multinational firm,'},
+  {s:'If she hadn\'t missed her flight this morning,'}],
+  right:['A) I would institute a four-day workweek immediately.','B) carbon emissions will decrease substantially over the next decade.','C) she would be attending the regional conference right now.','D) we wouldn\'t have planned an outdoor event in the rain.'],c:['B','D','A','C']},
+ {type:'complete',title:'Task 2. Open Cloze (ONE word)',items:[
+  {s:'By this time next year, our company 1) ______ have launched its new eco-friendly software line.',c:'will'},
+  {s:'If sales continue to rise as projected, we 2) ______ expand our offices into East Asia.',c:'will'},
+  {s:'However, unless market conditions remain stable, we 3) ______ not achieve our quarterly targets.',c:'will'},
+  {s:'We wish the economic outlook 4) ______ more predictable than it currently is.',c:'were'}]},
+ {type:'wish',title:'Task 3. Wishes (I wish / If only)',items:[
+  {s:'I regret not studying harder for the final qualification exam.',c:'I wish I had studied harder for the final qualification exam.'},
+  {s:'It is a pity that we don\'t own a larger house in the suburbs.',c:'If only we owned a larger house in the suburbs.'},
+  {s:'I am really annoyed that my colleague keeps interrupting me during presentations.',c:'I wish my colleague would stop interrupting me during presentations.'},
+  {s:'It\'s a shame that I cannot speak fluent Japanese.',c:'If only I could speak fluent Japanese.'}]},
+ {type:'prefix',title:'Task 4. Prefix Word Formation (dis-, mis-, over-, under-)',items:[
+  {s:'Please do not ______ my intentions; I am only trying to assist you. (UNDERSTAND)',c:'misunderstand'},
+  {s:'Many entry-level workers feel severely ______ for the long hours they work. (PAID)',c:'underpaid'},
+  {s:'The board expressed strong ______ regarding the proposed merger plans. (APPROVAL)',c:'disapproval'},
+  {s:'Be careful not to ______ the meat, or it will become tough and dry. (COOK)',c:'overcook'}]}
+]},
+{n:10,video:'eFmfoeTkhH0',focus:'Relative Clauses, Clauses of Concession / Purpose / Result, Question Tags',
+ tasks:[
+ {type:'relative',title:'Task 1. Relative Pronouns (who, which, whose, where)',items:[
+  {s:'The scientist ______ research won an international award delivered an inspiring lecture.',c:'whose'},
+  {s:'Paris, ______ hosts millions of visitors every summer, is a popular tourist destination.',c:'which'},
+  {s:'The young developer ______ lives next door to my uncle built a successful app.',c:'who'},
+  {s:'We visited the ancient library ______ famous historical manuscripts are preserved.',c:'where'}]},
+ {type:'link',title:'Task 2. Linking Words (Concession / Purpose / Result)',items:[
+  {s:'______ the heavy downpour, the outdoor marathon proceeded as scheduled. (Although / Despite)',c:'Despite'},
+  {s:'The firm upgraded its IT servers ______ enhance cybersecurity protection. (in order to / so that)',c:'in order to'},
+  {s:'The lecture was ______ engaging that nobody noticed two hours had passed. (such / so)',c:'so'},
+  {s:'He failed to prepare thoroughly for the interview; ______, he was not selected. (despite / as a result)',c:'as a result'}]},
+ {type:'qtag',title:'Task 3. Question Tags',items:[
+  {s:'You haven\'t submitted the monthly financial report yet, ______?',c:'have you'},
+  {s:'She works in the regional human resources department, ______?',c:'doesn\'t she'},
+  {s:'Let\'s review the final project guidelines once more, ______?',c:'shall we'},
+  {s:'Nobody was injured during the emergency landing, ______?',c:'were they'}]},
+ {type:'read',title:'Task 4. Reading Comprehension (Final Review)',text:`Dr. Marcus Vance, whose pioneering research on artificial intelligence has earned global recognition, believes that future automation will transform employment markets. Although critics argue that automation threatens traditional jobs, Vance maintains that new technology creates far more specialized roles than it destroys. He recently published a comprehensive study in order to demonstrate how digital tools enhance productivity. The findings were so persuasive that several government bodies decided to revise their educational curricula. You agree with this proactive approach, don't you?`,
+  q:['What is the main accomplishment of Dr. Marcus Vance mentioned in the text?','How does Dr. Vance counter the critics\' arguments regarding job automation?','What was the primary objective of Dr. Vance\'s recently published study?','What direct impact did his research findings have on public policy?'],
+  a:['His pioneering research on artificial intelligence has earned global recognition.','He maintains that new technology creates far more specialized roles than it destroys.','To demonstrate how digital tools enhance productivity.','Several government bodies decided to revise their educational curricula.']}
+]}
+];
+
+/* ============================================================
+   LISTENING
+   ============================================================ */
+const DEFAULT_L_LIST=[
+{n:1,video:'Qwv2TnDZVzQ',task:'Watch the video and write down 5 new words you hear. Then answer: What is the main idea of the video?'},
+{n:2,video:'tnvj7e1n5xk',task:'Listen and note 3 examples of Present Simple and 3 examples of Present Continuous.'},
+{n:3,video:'pWn_yaTVbSg',task:'Listen and write 3 sentences in reported speech based on what the speaker says.'},
+{n:4,video:'RCW-DCr580s',task:'Listen and write 3 sentences using Present Perfect or Present Perfect Continuous.'},
+{n:5,video:'sh6LRcPVpI0',task:'Listen and note 3 comparative structures you hear (more … than, as … as, etc.).'},
+{n:6,video:'fQgnwZ04aoU',task:'Listen and write 3 sentences with modal verbs (must, should, needn\'t).'},
+{n:7,video:'MK9VJmu2ehc',task:'Listen and note 3 Past Simple / Past Continuous sentences.'},
+{n:8,video:'7daFlIIKjkE',task:'Listen and write 3 passive voice sentences you hear.'},
+{n:9,video:'3-0wwhtVg-U',task:'Listen and write 3 conditional sentences (If …).'},
+{n:10,video:'dv1nJlSGj6o',task:'Listen and write 3 sentences with relative clauses (who, which, whose, where).'}
+];
+
+/* ============================================================
+   BOOKS
+   ============================================================ */
+const BOOKS=[
+{id:'b1', title:'Alices Adventures in Wonderland', author:'Lewis Carroll',
+ pdf:'https://drive.google.com/file/d/1H--qVDKjfwPHmpf6Pqeof-sFKM-9wG_Y/view?usp=sharing',
+ cover:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtrfLxA9P0ChQGOxky0INwgZ_8E--ISUhdAi5tRSJnS2OUapYHD4Oz6v3l&s=10',
+ trailer:'https://youtu.be/Zn5-rDj4c4k?si=nGQzWvS3vO-sKzPm',
+ descr:'Alices Adventures in Wonderland follows Alice, a curious young girl who falls down a rabbit hole into a bizarre, illogical world filled with whimsical and eccentric characters. To navigate this absurd realm, she must constantly adapt to mind-bending rules and magical size changes on a journey through pure imagination.'},
+ 
+ {id:'b2', title:'The adventure of Sherlock Holmes', author:'Arthur Conan Doyle',
+ pdf:'https://drive.google.com/file/d/19Jl7BsL_RQlzVrX-aspC2s3EVM-7TAD1/view?usp=sharing',
+ cover:'https://m.media-amazon.com/images/I/71XFTiuB1-L._AC_UF894,1000_QL80_.jpg',
+ trailer:'https://www.youtube.com/watch?v=u2C4CBmFDJM',
+ descr:'The Adventures of Sherlock Holmes is a famous collection of 12 short stories by Sir Arthur Conan Doyle, featuring the legendary detective Sherlock Holmes and his trusted companion, Dr. John Watson.'},
+
+ {id:'b3', title:'Face the raven ', author:'Sarah Dollard',
+ pdf:'https://drive.google.com/file/d/1hkCVrEGHju1MQr2DgVy_kdexvYZ0Uzvn/view?usp=sharing',
+ cover:'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZBOPn9J3459DqEsV9ij0vnbtRV4PDJDd4RIwj6mFKJYEF3P5OM7pmiLC2orf20Zv-enUEPdY5nXJ9At-v9UZUe8r3M24uKpvZ8uFWoYEc_ZL_UQMJKaMCvmfCUqBsnDPbmce9FCeK2Tg/s1600/92201.jpg',
+ trailer:'https://youtu.be/5W4ePv6HBdk?si=S_yKuRmaVaIJ4uNf',
+ descr:'Set in the grimy, criminal-infested Old City, the story begins with Alice locked away in a bleak asylum with fractured memories of a violent past involving a Rabbit. When a fire breaks out, she escapes alongside Hatcher, an axe-wielding inmate from the neighboring cell.'},
+
+ {id:'b4', title:'The Secret Garden', author:'Frances Hodgson Burnett',
+ pdf:'https://drive.google.com/file/d/1T3TkrmsSHoemBitDZ-CyXH6iKQs-t__J/view?usp=sharing',
+ cover:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5CueR_zfBb77906zxWyGXm2LR6VKvDHhc3WO_6rM5J1RO967jZMojCCyn&s=10',
+ trailer:'https://youtu.be/ADWRRzmOvAA?si=ak8f4VaRsrrObx1H',
+ descr:'The story follows Mary Lennox, a sickly, spoiled orphan sent from India to live at her uncles gloomy estate in Yorkshire, England. Lonely and neglected, Mary discovers a hidden, walled-off garden that has been locked away for years.'},
+
+ {id:'b5', title:'Doctor Who: Face the Raven', author:'Sarah Dollard',
+ pdf:'https://drive.google.com/file/d/16S5SA3UnRSMAlha2qKD8YjZElrA2dQ4b/view?usp=sharing',
+ cover:'https://m.media-amazon.com/images/I/71jg3E4Q8QL._AC_UF1000,1000_QL80_.jpg',
+ trailer:'https://youtu.be/bsYhEFL0bto?si=e01Dk2TIBonbkmfN',
+ descr:'When their young friend Rigsy discovers a glowing, counting-down tattoo on the back of his neck, the Twelfth Doctor and Clara Oswald investigate and discover a hidden "Trap Street" concealed in the center of modern London—a refuge for alien refugees governed by Mayor Ashildr (Me).'},
+];
+const BOOK_Q=['What interested you the most in this book?','What did you like about it, and why?','Which character, scene or idea will you remember, and would you recommend the book to a friend?'];
+
+/* ============================================================
+   FALLBACK-словарь
+   ============================================================ */
+const FALLBACK={
+ 'article':'a word used before a noun to show whether it is specific or general|артикль',
+ 'determiner':'a word that comes before a noun to show quantity or possession|анықтауыш',
+ 'convenience':'the quality of being easy to use or reach|қолайлылық',
+ 'nutritionist':'a person who studies food and health|диетолог',
+ 'processed':'changed by an industrial process before being sold|өңделген',
+ 'intake':'the amount of something you take into your body|қабылдау мөлшері',
+ 'commute':'to travel regularly to and from work|жұмысқа барып-қайту',
+ 'pace':'the speed at which something happens|қарқын',
+ 'urban':'connected with a town or city|қалалық',
+ 'deny':'to say that something is not true|жоққа шығару',
+ 'encourage':'to give someone confidence to do something|ынталандыру',
+ 'suggest':'to offer an idea for consideration|ұсыну',
+ 'promise':'to say that you will certainly do something|уәде беру',
+ 'misunderstanding':'a failure to understand something correctly|түсінбеушілік',
+ 'biodegradable':'able to decay naturally without harm|биологиялық ыдырайтын',
+ 'distributor':'a company that supplies goods to shops|дистрибьютор',
+ 'innovation':'a new idea, method, or product|инновация',
+ 'competitive':'as good as or better than others|бәсекеге қабілетті',
+ 'fluently':'in a way that flows smoothly and easily|еркін',
+ 'accommodation':'a place to live or stay|тұрғын үй',
+ 'obligation':'something you must do because of a rule|міндеттеме',
+ 'necessity':'something you need|қажеттілік',
+ 'permission':'the act of allowing someone to do something|рұқсат',
+ 'deduction':'a conclusion based on evidence|қорытынды',
+ 'surge':'a sudden large increase|күрт өсу',
+ 'mainframe':'a large powerful computer|негізгі компьютер',
+ 'butler':'a male servant in charge of a house|батлер',
+ 'shattered':'broken into small pieces|сынған',
+ 'deactivate':'to turn something off|өшіру',
+ 'incapacitate':'to make someone unable to act|әрекетсіз қалдыру',
+ 'surveillance':'careful watching of a person or place|бақылау',
+ 'conditional':'relating to a condition|шартты',
+ 'wish':'to want something that is not true|тілек',
+ 'prefix':'a letter or letters added to the beginning of a word|префикс',
+ 'misunderstand':'to understand something wrongly|қате түсіну',
+ 'underpaid':'paid less than is fair|аз жалақы төленетін',
+ 'overcook':'to cook something for too long|артық пісіру',
+ 'relative clause':'a clause that describes a noun|қатысты сөйлем',
+ 'concession':'something that is given up or admitted|жеңілдік',
+ 'purpose':'the reason for doing something|мақсат',
+ 'result':'something that happens because of something else|нәтиже',
+ 'question tag':'a short question added to the end of a statement|сұрақ қосымшасы',
+ 'persuasive':'able to make people believe something|сендіретін',
+ 'curriculum':'the subjects taught in a school|оқу бағдарламасы',
+ 'confidence':'the feeling that you can do something well|сенімділік',
+ 'nervous':'worried or slightly afraid|қобалжыған',
+ 'audience':'the people who watch or listen|көрермен'
+};
+function fbLookup(w){const k=w.toLowerCase();return FALLBACK[k]?{meaning:FALLBACK[k].split('|')[0],kk:FALLBACK[k].split('|')[1],source:'fallback'}:null}
+
+/* ================= STATE ================= */
+const $=s=>document.querySelector(s);
+const def={name:'',level:'B1',cur:1,done:{},ans:{},scores:{},streak:0,last:'',on:false,av:'',theme:'dark',introSeen:false,lanswers:{},vids:{},bookId:null,rdone:{},rscores:{},rcur:null,
+  fav:{},words:{},lang:'en',bq:{},lcur:null};
+let S=Object.assign({},def,JSON.parse(localStorage.getItem('aura')||'{}'));
+if(!S.fav)S.fav={};if(!S.bq)S.bq={};
+if(!S.words)S.words={};
+if(!S.lanswers)S.lanswers={};if(!S.vids)S.vids={};if(!S.rdone)S.rdone={};if(!S.rscores)S.rscores={};
+document.documentElement.dataset.theme=S.theme||"dark";
+/* ================= I18N (EN / KK / RU) ================= */
+const LANGS=['en','kk','ru'],LANG_NAMES={en:'English',kk:'Қазақша',ru:'Русский'};
+if(!LANGS.includes(S.lang))S.lang='en';
+const I18N={"Меню": ["Menu", "Мәзір"], "Гость": ["Guest", "Қонақ"], "Хранилище заполнено": ["Storage is full", "Жад толы"], "Вставьте ссылку YouTube в код": ["Add a YouTube link in the code", "Кодқа YouTube сілтемесін қойыңыз"], "Загружаю meaning и перевод через Gemini…": ["Loading meaning and translation via Gemini…", "Gemini арқылы meaning мен аударма жүктелуде…"], "недоступен — показан запасной словарь.": ["unavailable — showing the backup dictionary.", "қолжетімсіз — резервтік сөздік көрсетілді."], "В избранном": ["In favourites", "Таңдаулыда"], "Добавить в избранное": ["Add to favourites", "Таңдаулыға қосу"], "Обновить перевод": ["Refresh translation", "Аударманы жаңарту"], "Ключ Gemini задаётся в коде (константа GEMINI_KEY). Модель:": ["The Gemini key is set in the code (GEMINI_KEY constant). Model:", "Gemini кілті кодта (GEMINI_KEY тұрақтысы) беріледі. Модель:"], "Ключ Gemini задаётся в коде (константа GEMINI_KEY).": ["The Gemini key is set in the code (GEMINI_KEY constant).", "Gemini кілті кодта (GEMINI_KEY тұрақтысы) беріледі."], "Ответы:": ["Answers:", "Жауаптар:"], "Ключи:": ["Answer keys:", "Жауап кілттері:"], "Ключ:": ["Answer key:", "Жауап кілті:"], "Верно:": ["Correct:", "Дұрыс:"], "Эталон:": ["Model answer:", "Үлгі жауап:"], "Привет,": ["Hello,", "Сәлем,"], "студент": ["student", "студент"], "Серия:": ["Streak:", "Серия:"], "продолжайте каждый день.": ["keep going every day.", "күн сайын жалғастырыңыз."], "Продолжить обучение": ["Continue learning", "Оқуды жалғастыру"], "Завершено уроков": ["Lessons completed", "Аяқталған сабақтар"], "текстов пройдено": ["texts completed", "мәтін өтілді"], "Выполнение курса": ["Course progress", "Курс орындалуы"], "Слов в избранном": ["Words in favourites", "Таңдаулыдағы сөздер"], "Уроки": ["Lessons", "Сабақтар"], "Все 10 уроков открыты. В каждом — видео, задания и кликабельные слова.": ["All 10 lessons are open. Each has a video, tasks and clickable words.", "Барлық 10 сабақ ашық. Әрқайсысында бейне, тапсырмалар және басылатын сөздер бар."], "Урок": ["Lesson", "Сабақ"], "Пройден ✓": ["Completed ✓", "Өтілді ✓"], "В процессе ⏳": ["In progress ⏳", "Орындалуда ⏳"], "Нет данных урока.": ["No lesson data.", "Сабақ деректері жоқ."], "Слова урока": ["Lesson words", "Сабақ сөздері"], "Нажмите на слово → meaning и перевод через Gemini. ☆ — в избранное.": ["Tap a word → meaning and translation via Gemini. ☆ — add to favourites.", "Сөзді басыңыз → meaning және Gemini арқылы аударма. ☆ — таңдаулыға."], "Слова не заданы.": ["No words set.", "Сөздер берілмеген."], "Прогресс урока:": ["Lesson progress:", "Сабақ барысы:"], "баллов": ["points", "ұпай"], "Отвечено:": ["Answered:", "Жауап берілді:"], "урок завершён ✓": ["lesson completed ✓", "сабақ аяқталды ✓"], "все задания выполнены ✓ — нажмите «Завершить урок»": ["all tasks done ✓ — press \"Finish lesson\"", "барлық тапсырма орындалды ✓ — «Сабақты аяқтау» түймесін басыңыз"], "ответьте на все задания; результат и ответы откроются после завершения": ["answer all tasks; results and answers open after completion", "барлық тапсырмаға жауап беріңіз; нәтиже мен жауаптар аяқтағаннан кейін ашылады"], "Готово ✓": ["Done ✓", "Дайын ✓"], "Не выполнено": ["Not done", "Орындалмады"], "Завершить урок": ["Finish lesson", "Сабақты аяқтау"], "Все задания выполнены — можно завершать урок ✓": ["All tasks done — you can finish the lesson ✓", "Барлық тапсырма орындалды — сабақты аяқтауға болады ✓"], "Выполните все задания, чтобы завершить урок.": ["Complete all tasks to finish the lesson.", "Сабақты аяқтау үшін барлық тапсырманы орындаңыз."], "Отдельный каталог: встроенный YouTube-плеер + задание под ним.": ["Separate catalogue: built-in YouTube player + a task below it.", "Бөлек каталог: YouTube-плеер + астында тапсырма."], "Задание": ["Task", "Тапсырма"], "Ваш ответ...": ["Your answer...", "Жауабыңыз..."], "Нажмите на книгу, чтобы открыть отдельный раздел с PDF и трейлером.": ["Tap a book to open its page with the PDF and trailer.", "Кітапты басып, PDF және трейлері бар бөлімді ашыңыз."], "Все книги": ["All books", "Барлық кітаптар"], "Открыть PDF": ["Open PDF", "PDF ашу"], "не добавлен.": ["not added.", "қосылмаған."], "Словарь": ["Dictionary", "Сөздік"], "Слова из избранного. Нажмите на карточку — на обороте meaning и перевод на казахский.": ["Words from your favourites. Tap a card — the back shows the meaning and the Kazakh translation.", "Таңдаулы сөздер. Картаны басыңыз — артқы жағында meaning және қазақша аударма."], "Перевести все": ["Translate all", "Барлығын аудару"], "Очистить избранное?": ["Clear favourites?", "Таңдаулыны тазалайсыз ба?"], "Очистить избранное": ["Clear favourites", "Таңдаулыны тазалау"], "нажмите, чтобы перевернуть": ["tap to flip", "аудару үшін басыңыз"], "нет данных — нажмите для загрузки": ["no data — tap to load", "деректер жоқ — жүктеу үшін басыңыз"], "Убрать": ["Remove", "Алып тастау"], "Пока нет слов в избранном. Откройте урок и нажмите ☆ рядом со словом.": ["No favourite words yet. Open a lesson and tap ☆ next to a word.", "Таңдаулы сөз әзірге жоқ. Сабақты ашып, сөздің жанындағы ☆ басыңыз."], "Настройки и профиль": ["Settings and profile", "Баптаулар және профиль"], "Полное ФИО": ["Full name", "Толық аты-жөні"], "Аватар": ["Avatar", "Аватар"], "Язык": ["Language", "Тіл"], "Уровень: B1. Все данные хранятся только в вашем браузере (localStorage). Ключ Gemini задаётся в коде.": ["Level: B1. All data is stored only in your browser (localStorage). The Gemini key is set in the code.", "Деңгей: B1. Барлық дерек тек браузеріңізде (localStorage) сақталады. Gemini кілті кодта беріледі."], "Сбросить весь прогресс": ["Reset all progress", "Барлық прогресті тастау"], "текстов уровня B1. К каждому тексту — 5 заданий. Слова в тексте кликабельны: нажмите, чтобы увидеть meaning, перевод и добавить в избранное.": ["texts of B1 level. Each text has 5 tasks. Words in the text are clickable: tap to see the meaning and translation and to add them to favourites.", "B1 деңгейіндегі мәтін. Әр мәтінде 5 тапсырма бар. Мәтіндегі сөздерді басуға болады: meaning мен аударманы көріп, таңдаулыға қосыңыз."], "Не завершён": ["Not finished", "Аяқталмаған"], "Все тексты": ["All texts", "Барлық мәтіндер"], "слов…": ["words…", "сөз…"], "слов": ["words", "сөз"], "Прогресс:": ["Progress:", "Барысы:"], "текст завершён ✓": ["text completed ✓", "мәтін аяқталды ✓"], "все задания выполнены ✓ — нажмите «Завершить текст»": ["all tasks done ✓ — press \"Finish text\"", "барлық тапсырма орындалды ✓ — «Мәтінді аяқтау» түймесін басыңыз"], "Завершить текст": ["Finish text", "Мәтінді аяқтау"], "Все задания выполнены — можно завершать ✓": ["All tasks done — you can finish ✓", "Барлық тапсырма орындалды — аяқтауға болады ✓"], "Выполните все задания, чтобы завершить текст.": ["Complete all tasks to finish the text.", "Мәтінді аяқтау үшін барлық тапсырманы орындаңыз."], "Мой Прогресс": ["My Progress", "Менің прогресім"], "Настройки и Профиль": ["Settings & Profile", "Баптаулар және профиль"], "Тёмная тема": ["Dark theme", "Қараңғы тақырып"], "Светлая тема": ["Light theme", "Жарық тақырып"], "Уровень B1": ["Level B1", "Деңгей B1"], "дн. подряд": ["days in a row", "күн қатарынан"], "Выполните все задания": ["Complete all tasks", "Барлық тапсырманы орындаңыз"], "Урок завершён! Ответы открыты ✓": ["Lesson completed! Answers unlocked ✓", "Сабақ аяқталды! Жауаптар ашылды ✓"], "Текст пройден! Ответы открыты ✓": ["Text completed! Answers unlocked ✓", "Мәтін өтілді! Жауаптар ашылды ✓"], "Удалить весь прогресс?": ["Delete all progress?", "Барлық прогресті жоясыз ба?"], "Добавлено в избранное": ["Added to favourites", "Таңдаулыға қосылды"], "Убрано из избранного": ["Removed from favourites", "Таңдаулыдан алынды"], "Избранное пусто": ["Favourites are empty", "Таңдаулы бос"], "Все слова уже переведены ✓": ["All words are already translated ✓", "Барлық сөз аударылған ✓"], "Перевод ": ["Translating ", "Аударылуда "], "Озвучка не поддерживается": ["Speech is not supported", "Браузер дыбыстауды қолдамайды"], "Добро пожаловать в Bilimup ✦": ["Welcome to Bilimup ✦", "Bilimup-қа қош келдіңіз ✦"], "Введите полное ФИО — его увидит преподаватель.": ["Enter your full name — your teacher will see it.", "Толық аты-жөніңізді енгізіңіз — оны мұғалім көреді."], "Введите полное ФИО": ["Enter your full name", "Толық аты-жөніңізді енгізіңіз"], "Фамилия Имя Отчество": ["Surname Name Patronymic", "Тегі Аты Әкесінің аты"], "Продолжить →": ["Continue →", "Жалғастыру →"], "Привет! Я Bilimup AI. Объясню грамматику и дам подсказки, но готовые ответы на задания не выдаю — вы справитесь сами 💪": ["Hi! I'm Bilimup AI. I'll explain grammar and give hints, but I won't hand out ready answers to tasks — you can do it yourself 💪", "Сәлем! Мен Bilimup AI. Грамматиканы түсіндіремін, кеңес беремін, бірақ тапсырмалардың дайын жауабын бермеймін — өзіңіз істей аласыз 💪"], "Прямой ответ я не дам — так знание не закрепится. Посмотрите Grammar Focus урока и попробуйте ещё раз.": ["I won't give the direct answer — that way the knowledge won't stick. Look at the lesson's Grammar Focus and try again.", "Тікелей жауап бермеймін — олай білім бекімейді. Сабақтағы Grammar Focus-ты қарап, қайта көріңіз."], "привычки и факты: I work, he works. Present Continuous — сейчас: I am working.": ["habits and facts: I work, he works. Present Continuous — right now: I am working.", "әдеттер мен фактілер: I work, he works. Present Continuous — қазір: I am working."], "законченное действие: worked, went. Past Continuous — процесс: was working. Past Perfect — до другого действия: had worked.": ["a finished action: worked, went. Past Continuous — a process: was working. Past Perfect — before another action: had worked.", "аяқталған әрекет: worked, went. Past Continuous — үдеріс: was working. Past Perfect — басқа әрекеттен бұрын: had worked."], "первое упоминание; the — известный предмет; без артикля — общие понятия во мн. числе.": ["first mention; the — a known thing; no article — general ideas in the plural.", "алғаш аталуы; the — белгілі зат; артиклсіз — көпше түрдегі жалпы ұғымдар."], "Привет! С чем помочь: грамматика, задание или эссе?": ["Hi! What can I help with: grammar, a task or an essay?", "Сәлем! Немен көмектесейін: грамматика, тапсырма немесе эссе?"], "Подсказка: откройте урок, прочитайте Grammar Focus и выполните задания по порядку. Ответы откроются после выполнения всех заданий.": ["Hint: open a lesson, read the Grammar Focus and complete the tasks in order. Answers unlock after all tasks are done.", "Кеңес: сабақты ашып, Grammar Focus оқыңыз және тапсырмаларды ретімен орындаңыз. Жауаптар барлық тапсырма орындалғаннан кейін ашылады."], "Вопросы по книге": ["Questions about the book", "Кітап бойынша сұрақтар"], "Ответьте на 3 вопроса — ответы сохраняются автоматически.": ["Answer 3 questions — your answers are saved automatically.", "3 сұраққа жауап беріңіз — жауаптар автоматты түрде сақталады."], "Выберите отдельное задание Listening: видео, задание и ответ голосом через микрофон.": ["Choose a separate Listening task: video, task and a spoken answer via the microphone.", "Бөлек Listening тапсырмасын таңдаңыз: бейне, тапсырма және микрофон арқылы ауызша жауап."], "Ответ записан ✓": ["Answer saved ✓", "Жауап сақталды ✓"], "Без ответа": ["No answer", "Жауапсыз"], "Все Listening": ["All Listening", "Барлық Listening"], "Говорить": ["Speak", "Сөйлеу"], "Стоп": ["Stop", "Тоқтату"], "Очистить ответ": ["Clear answer", "Жауапты тазалау"], "Нажмите 🎤 и говорите по-английски — речь превратится в текст. Текст можно править вручную.": ["Press 🎤 and speak English — your speech will turn into text. You can edit the text manually.", "🎤 басып, ағылшынша сөйлеңіз — сөйлеу мәтінге айналады. Мәтінді қолмен түзетуге болады."], "Слушаю… говорите по-английски.": ["Listening… speak English.", "Тыңдап тұрмын… ағылшынша сөйлеңіз."], "Распознавание речи не поддерживается этим браузером — откройте в Chrome или Edge": ["Speech recognition is not supported in this browser — open it in Chrome or Edge", "Бұл браузер сөйлеуді тануды қолдамайды — Chrome немесе Edge-те ашыңыз"], "Доступ к микрофону запрещён — разрешите его в настройках браузера": ["Microphone access is blocked — allow it in your browser settings", "Микрофонға рұқсат жабық — браузер баптауларында рұқсат беріңіз"], "Речь не услышана — попробуйте ещё раз": ["No speech detected — please try again", "Сөйлеу естілмеді — қайталап көріңіз"], "Ошибка микрофона": ["Microphone error", "Микрофон қатесі"]};
+const I18N_RE=new RegExp(Object.keys(I18N).sort((a,b)=>b.length-a.length).map(k=>k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|'),'g');
+function tr(x){if(x==null||S.lang==='ru')return x;const i=S.lang==='kk'?1:0;return String(x).replace(I18N_RE,m=>I18N[m][i])}
+const STAT={en:{chead:'🤖 Bilimup AI — tutor',ci:'Ask about grammar...',burger:'Menu',fab:'Open AI tutor'},kk:{chead:'🤖 Bilimup AI — тьютор',ci:'Грамматика туралы сұраңыз...',burger:'Мәзір',fab:'AI тьюторды ашу'},ru:{chead:'🤖 Bilimup AI — репетитор',ci:'Спросите про грамматику...',burger:'Меню',fab:'Открыть AI-репетитора'}};
+function applyStatic(){const t=STAT[S.lang];document.documentElement.lang=S.lang;$('#chead').textContent=t.chead;$('#ci').placeholder=t.ci;$('#burger').setAttribute('aria-label',t.burger);$('#fab').setAttribute('aria-label',t.fab)}
+
+const save=()=>{try{localStorage.setItem('aura',JSON.stringify(S))}catch(e){toast('Хранилище заполнено')}};
+let view='dash';
+const K=()=>'B1-'+S.cur;
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+const nz=x=>String(x).toLowerCase().replace(/[’'`.,;!?]/g,'').replace(/\s+/g,' ').trim();
+const okw=(v,arr)=>!!nz(v)&&arr.some(x=>nz(x)===nz(v));
+const totalDone=()=>Object.keys(S.done).length;
+const readingDone=()=>Object.keys(S.rdone).length;
+function toast(x){const e=$('#toast');e.textContent=tr(x);e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display='none',2600)}
+(function(){const d=new Date(),td=d.toDateString();d.setDate(d.getDate()-1);
+if(S.last!==td){S.streak=S.last===d.toDateString()?S.streak+1:1;S.last=td;save()}})();
+
+const AK=(n,ti)=>'L'+n+'-T'+ti;
+function getAns(n,ti){return S.ans[AK(n,ti)]||(S.ans[AK(n,ti)]={});}
+function ytId(v){const m=String(v||'').match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/|\/live\/)([\w-]{11})/);return m?m[1]:(/^[\w-]{11}$/.test(v)?v:'')}
+function player(v,title,key){const link=(key&&S.vids[key])||v,id=ytId(link);
+const frame=id?`<iframe class="vid" src="https://www.youtube.com/embed/${id}?rel=0" title="${esc(title||'Video')}" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer;encrypted-media;picture-in-picture;fullscreen" allowfullscreen></iframe>`:`<div class="vid" style="display:flex;align-items:center;justify-content:center;color:var(--mu);text-align:center;padding:12px">🎬 Вставьте ссылку YouTube ниже</div>`;
+if(!key)return frame;
+return frame+`<div class="rowflex" style="margin-top:10px;gap:8px"><input id="vin-${key}" type="text" value="${esc(S.vids[key]||'')}" placeholder="https://www.youtube.com/watch?v=..." style="flex:1;min-width:180px"><button class="btn" data-act="vset" data-k="${key}">▶ Загрузить</button>${S.vids[key]?`<button class="btn g" data-act="vclear" data-k="${key}">✕</button>`:''}</div>`}
+
+/* ================= Gemini (с таймаутом) ================= */
+function withTimeout(promise,ms=8000){
+  return Promise.race([promise,new Promise((_,rej)=>setTimeout(()=>rej(new Error('timeout')),ms))]);
+}
+async function geminiBatch(words){
+  const key=(GEMINI_KEY||'').trim();
+  if(!key||key.indexOf('ВСТАВЬТЕ')===0)return {error:'no-key'};
+  const url=`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=`+encodeURIComponent(key);
+  const prompt=`You are an English teacher for B1 students. For EACH word/phrase in the list below return:
+- "meaning": a short clear English definition (1 sentence, B1 level)
+- "kk": the Kazakh translation
+Reply ONLY with a JSON array, same order as input, like:
+[{"word":"...","meaning":"...","kk":"..."}, ...]
+Words: ${JSON.stringify(words)}`;
+  try{
+    const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+      contents:[{parts:[{text:prompt}]}],
+      generationConfig:{temperature:0,maxOutputTokens:2048}
+    })});
+    if(!r.ok){const t=await r.text();return {error:'http',detail:t.slice(0,200)}}
+    const data=await r.json();
+    const txt=data?.candidates?.[0]?.content?.parts?.[0]?.text||'';
+    const m=txt.match(/\[[\s\S]*\]/);if(!m)return {error:'parse'};
+    let arr;try{arr=JSON.parse(m[0])}catch(e){return {error:'parse'}};
+    return {items:arr};
+  }catch(e){return {error:'network',detail:String(e.message||e)}}
+}
+async function geminiOne(word){const r=await geminiBatch([word]);if(r.error)return r;const it=(r.items||[])[0];if(!it||!it.meaning||!it.kk)return {error:'schema'};return {meaning:String(it.meaning).trim(),kk:String(it.kk).trim(),source:'gemini'}}
+async function ensureWord(word,force){
+  const k=word.toLowerCase();
+  if(!force&&S.words[k]&&S.words[k].meaning)return S.words[k];
+  let g=null;
+  try{g=await withTimeout(geminiOne(word),8000)}catch(e){g={error:'timeout'}}
+  if(g&&!g.error){S.words[k]={meaning:g.meaning,kk:g.kk,ts:Date.now()};save();return S.words[k]}
+  const fb=fbLookup(word);
+  if(fb){S.words[k]={meaning:fb.meaning,kk:fb.kk,ts:Date.now(),fallback:true,error:(g&&g.error)||'gemini'};save();return S.words[k]}
+  S.words[k]={meaning:'',kk:'',ts:Date.now(),error:(g&&(g.error+(g.detail?' '+g.detail:'')))||'gemini'};save();
+  return S.words[k];
+}
+
+/* ================= WORD POPUP ================= */
+let popWord=null;
+function renderWordPop(word){
+  const m=$('#wordmod');m.style.display='grid';
+  const k=word.toLowerCase();
+  const cached=S.words[k]&&S.words[k].meaning?S.words[k]:null;
+  m.innerHTML=tr(`<div class="glass word-detail">
+    <div class="rowflex" style="justify-content:space-between">
+      <h2>${esc(word)}</h2>
+      <div class="rowflex">
+        <button class="btn g" data-act="wspeak" data-w="${esc(word)}">🔊 EN</button>
+        <button class="btn g" data-act="wclose">✕</button>
+      </div>
+    </div>
+    <div id="wbody">
+      ${cached?`<p class="meaning">${esc(cached.meaning)}</p><p class="kk">${esc(cached.kk)}</p>`:'<p class="sub">Загружаю meaning и перевод через Gemini…</p>'}
+      ${cached&&cached.fallback?'<p class="hint">Gemini недоступен — показан запасной словарь.</p>':''}
+      ${cached&&cached.error&&!cached.fallback?`<p class="hint" style="color:var(--bad)">Gemini: ${esc(cached.error)}</p>`:''}
+    </div>
+    <div class="rowflex" style="margin-top:14px">
+      <button class="btn ${S.fav[k]?'g':''}" data-act="wtoggle" data-w="${esc(word)}">${S.fav[k]?'★ В избранном':'☆ Добавить в избранное'}</button>
+      <button class="btn g" data-act="wrefresh" data-w="${esc(word)}">↻ Обновить перевод</button>
+    </div>
+    <p class="hint" style="margin-top:8px">Ключ Gemini задаётся в коде (константа GEMINI_KEY).</p>
+  </div>`);
+}
+function openWordPop(word){
+  popWord=word;
+  renderWordPop(word);
+  const k=word.toLowerCase();
+  if(S.words[k]&&S.words[k].meaning)return;
+  ensureWord(word).then(()=>{
+    if(popWord===word){
+      const body=$('#wbody');
+      const info=S.words[k];
+      if(body&&info){setTimeout(()=>{body.innerHTML=tr(body.innerHTML)},0);
+        body.innerHTML=`<p class="meaning">${esc(info.meaning||'—')}</p><p class="kk">${esc(info.kk||'—')}</p>`
+          +(info.fallback?'<p class="hint">Gemini недоступен — показан запасной словарь.</p>':'')
+          +(info.error&&!info.fallback?`<p class="hint" style="color:var(--bad)">Gemini: ${esc(info.error)}</p>`:'');
+      }
+    }
+  });
+}
+function closeWordPop(){$('#wordmod').style.display='none';popWord=null}
+
+/* ================= TASK RENDERERS ================= */
+function allKnownWords(){
+  const set=new Set();
+  Object.keys(KW_LESSON).forEach(w=>set.add(w));
+  Object.keys(S.words||{}).forEach(w=>set.add(w));
+  Object.keys(FALLBACK||{}).forEach(w=>set.add(w));
+  return [...set];
+}
+function markWords(text){
+  if(!text)return '';
+  text=String(text);
+  const known=allKnownWords().filter(Boolean).sort((a,b)=>b.length-a.length);
+  if(!known.length)return esc(text);
+  const re=new RegExp('\\b(?:'+known.map(w=>w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&').replace(/\s+/g,'\\s+')).join('|')+')\\b','gi');
+  let out='',last=0,m;
+  while((m=re.exec(text))){
+    const key=m[0].toLowerCase().replace(/\s+/g,' ');
+    out+=esc(text.slice(last,m.index))+`<span class="word" data-act="word" data-w="${esc(key)}">${esc(m[0])}${S.fav[key]?'<span class="star">★</span>':''}</span>`;
+    last=m.index+m[0].length;
+    if(m[0].length===0)re.lastIndex++;
+  }
+  return out+esc(text.slice(last));
+}
+function mcTask(n,ti,task,show){const a=getAns(n,ti);
+ return task.q.map((q,qi)=>`<div class="q"><b>${qi+1}. ${markWords(q.q)}</b>`+q.o.map((o,oi)=>{let cls='';if(show&&a[qi]===oi)cls=oi===q.c?'ok':'bad';else if(show&&a[qi]!==undefined&&oi===q.c)cls='ok';else if(!show&&a[qi]===oi)cls='sel';return `<button class="opt ${cls}" data-act="ans" data-n="${n}" data-t="${ti}" data-k="${qi}" data-v="${oi}">${'ABCD'[oi]}. ${markWords(o)}</button>`}).join('')+'</div>').join('')}
+function tfTask(n,ti,task,show){const a=getAns(n,ti);
+ return (task.text?`<p class="art">${markWords(task.text)}</p>`:'')+task.items.map((it,i)=>{const v=a[i];return `<div class="tfrow"><b>${markWords(it.s)}</b>`+['T','F','NS'].map(x=>{let cls=v===x?'on':'';if(show&&v===x)cls=x===it.c?'ok':'bad';if(show&&x===it.c&&v!==x)cls='ok';return `<button class="${cls}" data-act="ans" data-n="${n}" data-t="${ti}" data-k="${i}" data-v="${x}">${x}</button>`}).join('')+(show?`<span class="hint">→ ${it.c}</span>`:'')+'</div>'}).join('')}
+function gapTask(n,ti,task,show){const a=getAns(n,ti);let i=-1;
+ const body=task.text.replace(/\{(\d+)\}/g,(_,k)=>{i++;const v=a[i]||'';const cls=show?(okw(v,task.a[i])?'ok':'bad'):'';return `<input data-g="${i}" data-n="${n}" data-t="${ti}" value="${esc(v)}" class="${cls}" size="14" autocomplete="off">`});
+ return `<p class="gap">${body}</p>`+(show?`<p class="hint">Ответы: ${task.a.map((x,i)=>`${i+1}) ${esc(x.join(' / '))}`).join(' · ')}</p>`:'')}
+function tfrmTask(n,ti,task,show){const a=getAns(n,ti);
+ return task.items.map((it,i)=>`<div class="q"><b>${markWords(it.s)}</b><input class="nm" data-tfrm="${i}" data-n="${n}" data-t="${ti}" value="${esc(a[i]||'')}" placeholder="Rewrite here...">${show?`<p class="hint">Ключ: ${esc(it.c)}</p>`:''}</div>`).join('')}
+function insertTask(n,ti,task,show){const a=getAns(n,ti);
+ return `<p class="art">${markWords(task.text)}</p>`+task.opts.map((o,oi)=>{const v=a[oi];let cls='';if(show&&v)cls=okw(v,task.c)?'ok':'bad';return `<div class="q"><b>${markWords(o)}</b><input class="line" data-ins="${oi}" data-n="${n}" data-t="${ti}" value="${esc(v||'')}" placeholder="1/2/3 or A/B/C"></div>`}).join('')+(show?`<p class="hint">Ключ: ${task.c.map((x,i)=>`${i+1}) ${x}`).join(' · ')}</p>`:'')}
+function reportTask(n,ti,task,show){const a=getAns(n,ti);
+ return task.items.map((it,i)=>`<div class="q"><b>${markWords(it.s)}</b><input class="nm" data-rep="${i}" data-n="${n}" data-t="${ti}" value="${esc(a[i]||'')}" placeholder="Reported speech...">${show?`<p class="hint">Ключ: ${esc(it.c)}</p>`:''}</div>`).join('')}
+function wformTask(n,ti,task,show){const a=getAns(n,ti);let body='';
+ if(task.text){let i=-1;body='<p class="art">'+task.text.replace(/\{(\d+)\}/g,(_,k)=>{i++;const v=a[i]||'';return `<input data-wf="${i}" data-n="${n}" data-t="${ti}" value="${esc(v)}" size="14" class="${show?(okw(v,[task.items[i].c])?'ok':'bad'):''}">`})+'</p>'}
+ else body=task.items.map((it,i)=>`<div class="q"><b>${markWords(it.s)}</b><input class="line" data-wf="${i}" data-n="${n}" data-t="${ti}" value="${esc(a[i]||'')}" class="${show?(okw(a[i],[it.c])?'ok':'bad'):''}"></div>`).join('');
+ return body+(show?`<p class="hint">Ключи: ${task.items.map((x,i)=>`${i+1}) ${esc(x.c)}`).join(' · ')}</p>`:'')}
+function clozeTask(n,ti,task,show){const a=getAns(n,ti);
+ return `<p class="art">${markWords(task.text)}</p>`+task.q.map((q,qi)=>`<div class="q"><b>${qi+1})</b>`+q.o.map((o,oi)=>{let cls='';if(show&&a[qi]===oi)cls=oi===q.c?'ok':'bad';else if(!show&&a[qi]===oi)cls='sel';return `<button class="opt ${cls}" data-act="ans" data-n="${n}" data-t="${ti}" data-k="${qi}" data-v="${oi}">${'ABCD'[oi]}. ${esc(o)}</button>`}).join('')+(show?`<p class="hint">Верно: ${'ABCD'[q.c]}</p>`:'')+'</div>').join('')}
+function matchTask(n,ti,task,show){const a=getAns(n,ti);
+ return task.left.map((it,i)=>`<div class="q"><b>${markWords(it.s)}</b><input class="line" data-mat="${i}" data-n="${n}" data-t="${ti}" value="${esc(a[i]||'')}" placeholder="A/B/C/D/E">${show?`<p class="hint">Верно: ${task.c[i]}</p>`:''}</div>`).join('')+`<div class="glass card"><b>Options</b>${task.right.map(o=>`<p class="art" style="margin:4px 0">${markWords(o)}</p>`).join('')}</div>`}
+function errTask(n,ti,task,show){const a=getAns(n,ti);
+ return task.items.map((it,i)=>`<div class="q"><b>${markWords(it.s)}</b><input class="nm" data-err="${i}" data-n="${n}" data-t="${ti}" value="${esc(a[i]||'')}" placeholder="Correction...">${show?`<p class="hint">Ключ: ${esc(it.c)}</p>`:''}</div>`).join('')}
+function completeTask(n,ti,task,show){const a=getAns(n,ti);
+ return task.items.map((it,i)=>`<div class="q"><b>${markWords(it.s)}</b><input class="nm" data-cmp="${i}" data-n="${n}" data-t="${ti}" value="${esc(a[i]||'')}" placeholder="Answer...">${show?`<p class="hint">Ключ: ${esc(it.c)}</p>`:''}</div>`).join('')}
+function readTask(n,ti,task,show){const a=getAns(n,ti);
+ return `<p class="art">${markWords(task.text)}</p>`+task.q.map((q,i)=>`<div class="q"><b>${i+1}. ${markWords(q)}</b><textarea data-read="${i}" data-n="${n}" data-t="${ti}" placeholder="Answer in full sentences...">${esc(a[i]||'')}</textarea>${show?`<p class="hint">Model answer: ${esc(task.a[i])}</p>`:''}</div>`).join('')}
+function headTask(n,ti,task,show){const a=getAns(n,ti);
+ return task.paras.map((p,i)=>`<div class="q"><p class="art">${markWords(p)}</p><input class="line" data-head="${i}" data-n="${n}" data-t="${ti}" value="${esc(a[i]||'')}" placeholder="A/B/C/D">${show?`<p class="hint">Верно: ${task.c[i]}</p>`:''}</div>`).join('')+`<div class="glass card"><b>Headings</b>${task.opts.map(o=>`<p class="art" style="margin:4px 0">${markWords(o)}</p>`).join('')}</div>`}
+function pastmodalTask(n,ti,task,show){const a=getAns(n,ti);
+ return task.items.map((it,i)=>`<div class="q"><b>${markWords(it.s)}</b>`+it.o.map((o,oi)=>{let cls='';if(show&&a[i]===oi)cls=oi===it.c?'ok':'bad';else if(!show&&a[i]===oi)cls='sel';return `<button class="opt ${cls}" data-act="ans" data-n="${n}" data-t="${ti}" data-k="${i}" data-v="${oi}">${'ABC'[oi]}. ${esc(o)}</button>`}).join('')+(show?`<p class="hint">Верно: ${'ABC'[it.c]}</p>`:'')+'</div>').join('')}
+function condTask(n,ti,task,show){const a=getAns(n,ti);
+ return task.left.map((it,i)=>`<div class="q"><b>${markWords(it.s)}</b><input class="line" data-con="${i}" data-n="${n}" data-t="${ti}" value="${esc(a[i]||'')}" placeholder="A/B/C/D">${show?`<p class="hint">Верно: ${task.c[i]}</p>`:''}</div>`).join('')+`<div class="glass card"><b>Main clauses</b>${task.right.map(o=>`<p class="art" style="margin:4px 0">${markWords(o)}</p>`).join('')}</div>`}
+function genericOpen(n,ti,task,show,attr){const a=getAns(n,ti);
+ return task.items.map((it,i)=>`<div class="q"><b>${markWords(it.s)}</b><input class="nm" ${attr}="${i}" data-n="${n}" data-t="${ti}" value="${esc(a[i]||'')}" placeholder="Answer...">${show?`<p class="hint">Ключ: ${esc(it.c)}</p>`:''}</div>`).join('')}
+function shortTask(n,ti,task,show){const a=getAns(n,ti);
+ return task.items.map((it,i)=>`<div class="q"><b>${i+1}. ${markWords(it.s)}</b><input class="nm" data-sa="${i}" data-n="${n}" data-t="${ti}" value="${esc(a[i]||'')}" placeholder="Short answer...">${show?`<p class="hint">Эталон: ${esc(it.c)}</p>`:''}</div>`).join('')}
+const TASK_RENDER={mc:mcTask,tf:tfTask,gap:gapTask,tfrm:tfrmTask,insert:insertTask,report:reportTask,wform:wformTask,cloze:clozeTask,match:matchTask,err:errTask,complete:completeTask,read:readTask,head:headTask,pastmodal:pastmodalTask,cond:condTask,short:shortTask,
+ modal:(n,ti,task,show)=>genericOpen(n,ti,task,show,'data-mod'),passive:(n,ti,task,show)=>genericOpen(n,ti,task,show,'data-pas'),causative:(n,ti,task,show)=>genericOpen(n,ti,task,show,'data-caus'),wish:(n,ti,task,show)=>genericOpen(n,ti,task,show,'data-wish'),prefix:(n,ti,task,show)=>genericOpen(n,ti,task,show,'data-pref'),relative:(n,ti,task,show)=>genericOpen(n,ti,task,show,'data-rel'),link:(n,ti,task,show)=>genericOpen(n,ti,task,show,'data-link'),qtag:(n,ti,task,show)=>genericOpen(n,ti,task,show,'data-qtag')};
+
+function isTaskDone(type,task,a){if(!a)return false;const keys=Object.keys(a);if(!keys.length)return false;
+ switch(type){
+  case 'mc':return task.q.every((q,i)=>a[i]!==undefined);
+  case 'tf':return task.items.every((it,i)=>a[i]!==undefined);
+  case 'gap':return task.a.every((x,i)=>nz(a[i]||''));
+  case 'tfrm':case 'report':case 'err':case 'complete':case 'modal':case 'passive':case 'causative':case 'wish':case 'prefix':case 'relative':case 'link':case 'qtag':case 'short':return task.items.every((it,i)=>nz(a[i]||''));
+  case 'insert':case 'match':case 'cond':case 'head':return task.c.every((x,i)=>nz(a[i]||''));
+  case 'wform':return (task.items||[]).every((it,i)=>nz(a[i]||''));
+  case 'cloze':return task.q.every((q,i)=>a[i]!==undefined);
+  case 'read':return task.q.every((q,i)=>nz(a[i]||''));
+  case 'pastmodal':return task.items.every((it,i)=>a[i]!==undefined);
+  default:return false}}
+function taskScore(type,task,a){if(!a)return 0;
+ switch(type){
+  case 'mc':return task.q.reduce((s,q,i)=>s+(a[i]===q.c?1:0),0);
+  case 'tf':return task.items.reduce((s,it,i)=>s+(a[i]===it.c?1:0),0);
+  case 'gap':return task.a.reduce((s,x,i)=>s+(okw(a[i]||'',x)?1:0),0);
+  case 'tfrm':case 'report':case 'err':case 'complete':case 'modal':case 'passive':case 'causative':case 'wish':case 'prefix':case 'relative':case 'link':case 'qtag':return task.items.reduce((s,it,i)=>s+(okw(a[i]||'',[it.c])?1:0),0);
+  case 'short':return task.items.reduce((s,it,i)=>s+(nz(a[i]||'')?1:0),0);
+  case 'insert':case 'match':case 'cond':case 'head':return task.c.reduce((s,x,i)=>s+(nz(a[i]||'')===nz(x)?1:0),0);
+  case 'wform':return (task.items||[]).reduce((s,it,i)=>s+(okw(a[i]||'',[it.c])?1:0),0);
+  case 'cloze':return task.q.reduce((s,q,i)=>s+(a[i]===q.c?1:0),0);
+  case 'read':return task.q.reduce((s,q,i)=>s+(nz(a[i]||'')?1:0),0);
+  case 'pastmodal':return task.items.reduce((s,it,i)=>s+(a[i]===it.c?1:0),0);
+  default:return 0}}
+function taskMax(type,task){
+ switch(type){
+  case 'mc':return task.q.length;case 'tf':return task.items.length;case 'gap':return task.a.length;
+  case 'tfrm':case 'report':case 'err':case 'complete':case 'modal':case 'passive':case 'causative':case 'wish':case 'prefix':case 'relative':case 'link':case 'qtag':case 'short':return task.items.length;
+  case 'insert':case 'match':case 'cond':case 'head':return task.c.length;
+  case 'wform':return (task.items||[]).length;case 'cloze':return task.q.length;case 'read':return task.q.length;case 'pastmodal':return task.items.length;default:return 1}}
+function taskAnswered(type,task,a){if(!a)return 0;return Math.min(taskMax(type,task),Object.keys(a).filter(k=>a[k]!==undefined&&String(a[k]).trim()!=='').length)}
+
+/* ================= VIEWS ================= */
+function dash(){const t=totalDone(),rd=readingDone();
+return `<h1>Привет, ${esc(S.name.split(' ')[1]||S.name||'студент')}!</h1><p class="sub">Серия: ${S.streak} 🔥 — продолжайте каждый день.</p>
+<button class="btn" data-act="cont" style="margin-bottom:18px">Продолжить обучение</button>
+<div class="grid">
+<div class="card glass stat"><b>${t}<small style="font-size:16px;color:var(--mu)"> / 10</small></b><span>Завершено уроков</span></div>
+<div class="card glass stat"><b>${rd}<small style="font-size:16px;color:var(--mu)"> / 10</small></b><span>Reading текстов пройдено</span><div class="bar"><i style="width:${rd*10}%"></i></div></div>
+<div class="card glass stat"><b>${Math.round(t*10)}%</b><span>Выполнение курса</span><div class="bar"><i style="width:${t*10}%"></i></div></div>
+<div class="card glass stat"><b>${Object.keys(S.fav).length}</b><span>Слов в избранном</span></div></div>
+${list()}`}
+function list(){return `<h2>📚 Уроки</h2><p class="sub">Все 10 уроков открыты. В каждом — видео, задания и кликабельные слова.</p>`+Array.from({length:10},(_,i)=>{const n=i+1,done=!!S.done['B1-'+n];return `<button class="ls" data-act="open" data-n="${n}"><b>Урок ${n}</b><em style="color:${done?'var(--ok)':'var(--wn)'}">${done?'Пройден ✓':'В процессе ⏳'}</em></button>`}).join('')}
+
+function lesson(){const wb=WB[S.cur-1];if(!wb)return '<p>Нет данных урока.</p>';
+ const show=!!S.done[K()];let ok=0,all=0;const an=wb.tasks.reduce((s,t,ti)=>s+taskAnswered(t.type,t,getAns(S.cur,ti)),0);
+ wb.tasks.forEach((task,ti)=>{all+=taskMax(task.type,task);ok+=taskScore(task.type,task,getAns(S.cur,ti))});
+ const completed=wb.tasks.every((task,ti)=>isTaskDone(task.type,task,getAns(S.cur,ti)));
+ const words=Object.keys(KW_LESSON).filter(w=>KW_LESSON[w]===S.cur);
+ return `<h1>B1 · Урок ${S.cur}</h1><p class="sub"><b>Grammar Focus:</b> ${esc(wb.focus)}</p>
+ <div class="glass card"><h2 style="margin-top:0">🎧 Video</h2>${player(wb.video,'Lesson '+S.cur,'L'+S.cur)}</div>
+ <div class="glass card" style="margin-top:16px"><h2 style="margin-top:0">📖 Слова урока</h2><p class="sub">Нажмите на слово → meaning и перевод через Gemini. ☆ — в избранное.</p><div class="rowflex">${words.map(w=>`<button class="btn g" data-act="word" data-w="${esc(w)}" style="padding:6px 12px">${esc(w)} ${S.fav[w]?'★':'☆'}</button>`).join('')||'<span class="sub">Слова не заданы.</span>'}</div></div>
+ <div class="glass card" style="margin-top:16px"><b>Прогресс урока:</b> ${show?ok+' / '+all+' баллов':'Отвечено: '+an+' / '+all} · ${show?'урок завершён ✓':completed?'все задания выполнены ✓ — нажмите «Завершить урок»':'ответьте на все задания; результат и ответы откроются после завершения'}<div class="bar"><i style="width:${all?Math.round((show?ok:an)/all*100):0}%"></i></div></div>
+ ${wb.tasks.map((task,ti)=>`<div class="glass card" style="margin-top:16px"><h2 style="margin-top:0">${esc(task.title)}<span class="bg ${isTaskDone(task.type,task,getAns(S.cur,ti))?'g':'r'}">${isTaskDone(task.type,task,getAns(S.cur,ti))?'Готово ✓':'Не выполнено'}</span></h2>${TASK_RENDER[task.type](S.cur,ti,task,show)}</div>`).join('')}
+ <div style="margin-top:18px"><button class="btn" id="fin" data-act="done" ${completed?'':'disabled'}>Завершить урок</button><p class="sub" style="margin:8px 0 0">${completed?'Все задания выполнены — можно завершать урок ✓':'Выполните все задания, чтобы завершить урок.'}</p></div>`}
+
+let rec=null;
+function listening(){return S.lcur===null||!DEFAULT_L_LIST[S.lcur]?listenGrid():listenDetail()}
+function listenGrid(){return `<h1>🎧 Listening</h1><p class="sub">Выберите отдельное задание Listening: видео, задание и ответ голосом через микрофон.</p>`+DEFAULT_L_LIST.map((it,i)=>{const d=!!(S.lanswers[i]||'').trim();return `<button class="ls" data-act="lopen" data-n="${i}"><b>Listening ${it.n}</b><em style="color:${d?'var(--ok)':'var(--wn)'}">${d?'Ответ записан ✓':'Без ответа'}</em></button>`}).join('')}
+function listenDetail(){const i=S.lcur,it=DEFAULT_L_LIST[i];
+ return `<button class="btn g" data-act="lback" style="margin-bottom:14px">← Все Listening</button><h1 style="margin-top:0">🎧 Listening ${it.n}</h1>
+ <div class="glass card">${player(it.video,'Listening '+it.n,'LS'+it.n)}</div>
+ <div class="glass card" style="margin-top:16px"><h3 style="margin-top:0">Задание</h3><p class="art">${esc(it.task)}</p>
+ <div class="rowflex" style="margin-top:8px"><button class="btn" id="micb" data-act="mic" data-n="${i}">🎤 Говорить</button><button class="btn g" data-act="mclear" data-n="${i}">Очистить ответ</button></div>
+ <p class="hint" id="mich" style="margin:8px 0 0">Нажмите 🎤 и говорите по-английски — речь превратится в текст. Текст можно править вручную.</p>
+ <textarea data-la="${i}" placeholder="Ваш ответ...">${esc(S.lanswers[i]||'')}</textarea></div>`}
+function micUI(on){const b=$('#micb');if(b){b.textContent=tr(on?'⏹ Стоп':'🎤 Говорить');b.classList.toggle('g',on)}const h=$('#mich');if(h&&on)h.textContent=tr('Слушаю… говорите по-английски.')}
+function toggleMic(i){
+ const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+ if(!SR)return toast('Распознавание речи не поддерживается этим браузером — откройте в Chrome или Edge');
+ if(rec){rec.stop();return}
+ const ta=document.querySelector('[data-la="'+i+'"]');if(!ta)return;
+ let base=ta.value||'';if(base&&!/\s$/.test(base))base+=' ';let fin='';
+ const r=rec=new SR();r.lang='en-US';r.interimResults=true;r.continuous=true;
+ r.onresult=e=>{let it='';for(let k=e.resultIndex;k<e.results.length;k++){const x=e.results[k];if(x.isFinal)fin+=x[0].transcript.trim()+' ';else it+=x[0].transcript}
+  ta.value=base+fin+it;S.lanswers[i]=base+fin;save()};
+ r.onerror=e=>{toast(e.error==='not-allowed'||e.error==='service-not-allowed'?'Доступ к микрофону запрещён — разрешите его в настройках браузера':e.error==='no-speech'?'Речь не услышана — попробуйте ещё раз':'Ошибка микрофона: '+e.error)};
+ r.onend=()=>{rec=null;ta.value=base+fin;S.lanswers[i]=base+fin;save();micUI(false);const h=$('#mich');if(h)h.textContent=tr('Нажмите 🎤 и говорите по-английски — речь превратится в текст. Текст можно править вручную.')};
+ try{r.start();micUI(true)}catch(e){rec=null;toast('Ошибка микрофона')}}
+
+function booksGrid(){return `<h1>🎬 Books</h1><p class="sub">Нажмите на книгу, чтобы открыть отдельный раздел с PDF и трейлером.</p><div class="bookgrid">`+BOOKS.map(b=>`<button class="bookcard" data-act="book" data-id="${esc(b.id)}"><div class="cover">${b.cover?`<img src="${esc(b.cover)}" alt="${esc(b.title)}" onerror="this.style.display='none'">`:'📕'}</div><div class="meta"><b>${esc(b.title)}</b><span>${esc(b.author||'')}</span></div></button>`).join('')+'</div>'}
+function bookDetail(){const b=BOOKS.find(x=>x.id===S.bookId);if(!b)return booksGrid();
+ return `<button class="btn g" data-act="books" style="margin-bottom:14px">← Все книги</button>
+ <div class="glass card"><div class="bookdetail"><div class="cover">${b.cover?`<img src="${esc(b.cover)}" alt="${esc(b.title)}" onerror="this.style.display='none'">`:'📕'}</div><div><h1 style="margin-top:0">${esc(b.title)}</h1><p class="sub">${esc(b.author||'')}</p><p class="art">${esc(b.descr||'')}</p>${b.pdf?`<a href="${esc(b.pdf)}" target="_blank" rel="noopener" class="btn g" style="display:inline-block;margin-bottom:12px">📄 Открыть PDF</a>`:'<p class="sub">PDF не добавлен.</p>'}</div></div></div>
+ <div class="glass card" style="margin-top:16px"><h2 style="margin-top:0">🎬 Books</h2>${player(b.trailer,'Trailer: '+b.title)}</div>
+ <div class="glass card" style="margin-top:16px"><h2 style="margin-top:0">💬 Вопросы по книге</h2><p class="sub">Ответьте на 3 вопроса — ответы сохраняются автоматически.</p>${(b.q||BOOK_Q).map((q,qi)=>`<div class="q"><b>${qi+1}. ${esc(q)}</b><textarea data-bq="${qi}" placeholder="Ваш ответ...">${esc(((S.bq[b.id]||{})[qi])||'')}</textarea></div>`).join('')}</div>`}
+
+function dictView(){
+ const favWords=Object.keys(S.fav);
+ return `<h1>📖 Словарь</h1><p class="sub">Слова из избранного. Нажмите на карточку — на обороте meaning и перевод на казахский.</p>
+ <div class="glass card" style="margin-bottom:16px"><div class="rowflex"><button class="btn g" data-act="gemall">Перевести все</button><button class="btn g" data-act="favclear">Очистить избранное</button></div><p class="hint" style="margin-top:6px">Ключ Gemini задаётся в коде (константа GEMINI_KEY). Модель: ${GEMINI_MODEL}.</p></div>
+ ${favWords.length?`<div class="flash-grid">${favWords.map(w=>{const info=S.words[w.toLowerCase()]||{};return `<div class="flip" data-act="flip" data-w="${esc(w)}"><div class="face"><b>${esc(w)}</b><span class="muted">${info.meaning?'нажмите, чтобы перевернуть':'нет данных — нажмите для загрузки'}</span><button class="btn g" data-act="wspeak" data-w="${esc(w)}">🔊 EN</button></div><div class="face back"><b>${esc(w)}</b><span class="meaning">${esc(info.meaning||'—')}</span><span class="kk">${esc(info.kk||'—')}</span><div class="rowflex"><button class="btn g" data-act="wspeak" data-w="${esc(w)}">🔊 EN</button><button class="btn g" data-act="wunfav" data-w="${esc(w)}">✕ Убрать</button></div></div></div>`}).join('')}</div>`:'<p class="sub">Пока нет слов в избранном. Откройте урок и нажмите ☆ рядом со словом.</p>'}
+ </div>`}
+
+function set(){return `<h1>Настройки и профиль</h1><div class="glass card" style="max-width:520px"><label>Полное ФИО</label><input class="nm" id="nm" value="${esc(S.name)}"><label>Аватар</label><input type="file" id="avf" accept="image/*" style="display:block;margin:8px 0 14px"><label>Язык</label><button class="btn g" data-act="lang" style="display:block;margin:8px 0 14px">🌐 ${LANG_NAMES[S.lang]} →</button><p class="sub">Уровень: B1. Все данные хранятся только в вашем браузере (localStorage). Ключ Gemini задаётся в коде.</p><button class="btn g" data-act="reset" style="color:var(--bad)">Сбросить весь прогресс</button></div>`}
+
+/* ================= READING: 10 текстов, 5 заданий ================= */
+const RD=[
+{title:'Working from Home',text:`More and more people now work from home, and the change has happened faster than anyone expected. Before 2020, only a small number of companies allowed their employees to work remotely, but today millions of office workers spend at least part of their week at home. Many employees say they save time because they do not have to travel to the office every day. A person who commutes for an hour in each direction can save ten hours a week — time that can be spent on family, hobbies or simply rest. Employees also report that they can organise their day more freely and concentrate better on difficult tasks, because there are fewer interruptions than in a busy open-plan office. Some companies have even closed their expensive city offices and use the money to pay for better home equipment for their staff.
+
+However, remote work is not perfect. Some people feel lonely without their colleagues and miss the small conversations that happen in a kitchen or corridor. Others find it difficult to separate work from free time, and they answer emails late at night or at weekends. For young employees who have just started their careers, learning from experienced colleagues is harder when everyone is at home. Because of these problems, a lot of companies are introducing a hybrid model, where workers come to the office two or three days a week and stay at home on other days. Experts believe this balance will become the most popular way of working in the future, because it offers flexibility and keeps the team together.`,tasks:[
+{type:'mc',title:'Task 1 · Multiple choice',q:[
+{q:'What do many employees like about working from home?',o:['They earn more money','They save travelling time','They have fewer meetings','They work shorter hours'],c:1},
+{q:'What is one problem of remote work?',o:['Slow internet','Higher taxes','Loneliness','Noisy offices'],c:2},
+{q:'Why do some employees find it hard to stop working?',o:['They have too many meetings','They cannot separate work from free time','Their managers call them','They like their jobs too much'],c:1},
+{q:'What is a hybrid model?',o:['Working only at home','Working only in the office','A mix of office days and home days','Working at night'],c:2}]},
+{type:'tf',title:'Task 2 · True / False / Not Given',items:[
+{s:'Employees save time when they work from home.',c:'T'},
+{s:'All companies have stopped using offices.',c:'F'},
+{s:'Young employees find it easy to learn from colleagues at home.',c:'F'},
+{s:'Experts think hybrid work will be popular.',c:'T'},
+{s:'Most remote workers earn more money.',c:'NS'}]},
+{type:'gap',title:'Task 3 · Complete the summary',text:'Many people save {1} because they do not travel to the office. Some feel {2} without colleagues, and it is hard to separate work from {3}. Young workers learn less from experienced {4}, so companies use a {5} model with two or three office days a week.',a:[['time'],['lonely'],['free time'],['colleagues'],['hybrid']]},
+{type:'head',title:'Task 4 · Match the headings',paras:[
+'Paragraph 1: Benefits of working from home (time, flexibility, concentration).',
+'Paragraph 2: Problems of remote work and the hybrid solution.'],
+opts:['A) Problems and a balanced solution','B) How to find a new job','C) Advantages of remote work','D) The history of offices'],c:['C','A']},
+{type:'short',title:'Task 5 · Short answer questions',items:[
+{s:'How many hours a week can a person save if they commute one hour each way?',c:'ten hours'},
+{s:'Where do small conversations happen in an office?',c:'in a kitchen or corridor'},
+{s:'How many days a week do workers come to the office in a hybrid model?',c:'two or three days'},
+{s:'What two things does the hybrid model offer?',c:'flexibility and team spirit'}]}
+]},
+{title:'Learning a Language',text:`Learning a new language as an adult is challenging, but it is certainly possible. Many people believe that only children can learn languages well, yet research shows that adults can make very good progress if they practise regularly. Short daily practice works better than one long lesson every week, because the brain remembers information better when it meets it often. Fifteen minutes a day is enough to notice real improvement after a few months, and a regular routine is more useful than a big effort once a month.
+
+Many learners start with apps, which are cheap and easy to use, but experts say that speaking with real people is just as important. When you speak, you have to think quickly, and this trains your brain to use the language naturally. It is normal to make mistakes, and they are an important part of the process. In fact, learners who are afraid of mistakes usually improve more slowly than those who are not afraid to try. Learners who watch films, listen to podcasts and read simple books usually improve faster because they meet new words in context. It also helps to write a short diary in the new language, even if it is only three or four sentences a day.
+
+The most important thing is to stay motivated, so it helps to set small goals and celebrate every success, for example when you can watch a short video without subtitles or order food in a restaurant. Learning a language is a long journey, but every small step brings you closer to your goal.`,tasks:[
+{type:'mc',title:'Task 1 · Multiple choice',q:[
+{q:'What works better according to research?',o:['One long weekly lesson','Short daily practice','Only grammar books','Studying at night'],c:1},
+{q:'What do experts say about speaking with real people?',o:['It is too expensive','It is not necessary','It is as important as using apps','It is easier than reading'],c:2},
+{q:'Why do learners who watch films improve faster?',o:['Films have no difficult words','Films are shorter than books','They avoid making mistakes','They meet new words in context'],c:3},
+{q:'What helps learners stay motivated?',o:['Big goals','Small goals and celebrating success','Studying only grammar','Never making mistakes'],c:1}]},
+{type:'tf',title:'Task 2 · True / False / Not Given',items:[
+{s:'Adults cannot learn a new language.',c:'F'},
+{s:'Mistakes are a normal part of learning.',c:'T'},
+{s:'Learners afraid of mistakes improve more slowly.',c:'T'},
+{s:'Podcasts are better than films for learners.',c:'NS'},
+{s:'Small goals can help learners stay motivated.',c:'T'}]},
+{type:'gap',title:'Task 3 · Complete the summary',text:'Short {1} practice is better than one long lesson a week. Making {2} is normal, and learners improve when they meet new words in {3}. Small {4} help people stay motivated. Fifteen {5} a day is enough to see progress.',a:[['daily'],['mistakes'],['context'],['goals'],['minutes']]},
+{type:'head',title:'Task 4 · Match the headings',paras:[
+'Paragraph 1: How adults can learn and why daily practice helps.',
+'Paragraph 2: Speaking, mistakes, films and motivation.'],opts:['A) Only children can learn languages','B) Practice, speaking and motivation','C) The history of English','D) How to pass an exam'],c:['B','B']},
+{type:'short',title:'Task 5 · Short answer questions',items:[
+{s:'How many minutes a day are enough to see progress?',c:'fifteen minutes'},
+{s:'What do learners need to meet new words in context?',c:'films, podcasts and books'},
+{s:'What can learners write every day?',c:'a short diary'},
+{s:'What should learners celebrate?',c:'every small success'}]}
+]},
+{title:'Why Sleep Matters',text:`Doctors say that most adults need between seven and nine hours of sleep every night. Children and teenagers need even more, because their bodies and brains are still growing. During sleep, the body repairs itself and the brain stores the information we have learned during the day. This is why students who sleep well usually remember more before an exam. People who do not sleep enough often feel tired, find it hard to concentrate and get ill more easily. After several nights of poor sleep, even simple tasks can feel difficult, and people become more emotional and less patient.
+
+Unfortunately, many of us use phones and computers late in the evening, and the bright screens make it harder to fall asleep. The brain sees the light and thinks it is still daytime, so it produces less of the chemical that helps us sleep. To sleep better, experts advise going to bed at the same time every day, avoiding coffee after lunch and keeping the bedroom cool and quiet. A short walk before bed can also help you relax. It is also a good idea to leave your phone in another room and read a paper book instead of scrolling through social media. Some people find that writing down tomorrow's tasks before bed helps them stop worrying and fall asleep faster.
+
+Sleep is not a waste of time — it is an important part of a healthy life. If you often feel tired in the morning, try changing one small habit this week and see the difference.`,tasks:[
+{type:'mc',title:'Task 1 · Multiple choice',q:[
+{q:'How many hours of sleep do most adults need?',o:['Five to six','Six to seven','Seven to nine','Ten to twelve'],c:2},
+{q:'What happens to the brain during sleep?',o:['It stops working','It stores information','It gets warmer','It forgets everything'],c:1},
+{q:'Why do bright screens make it harder to fall asleep?',o:['They are too small','The brain thinks it is still daytime','They make noise','They are too expensive'],c:1},
+{q:'What is one piece of advice for better sleep?',o:['Drink coffee in the evening','Use your phone in bed','Sleep in a warm room','Go to bed at the same time every day'],c:3}]},
+{type:'tf',title:'Task 2 · True / False / Not Given',items:[
+{s:'Bright screens can make it harder to fall asleep.',c:'T'},
+{s:'Sleep helps the brain store information.',c:'T'},
+{s:'Coffee after lunch improves sleep.',c:'F'},
+{s:'Teenagers need more sleep than adults.',c:'T'},
+{s:'Children need more sleep than adults.',c:'NS'}]},
+{type:'gap',title:'Task 3 · Complete the summary',text:'Adults usually need seven to nine hours of {1}. Not sleeping enough makes it hard to {2}. Bright {3} before bed are a problem, so experts advise a cool and {4} bedroom and leaving your {5} in another room.',a:[['sleep'],['concentrate'],['screens'],['quiet'],['phone']]},
+{type:'head',title:'Task 4 · Match the headings',paras:[
+'Paragraph 1: How much sleep we need and what it does for us.',
+'Paragraph 2: Screens and advice for better sleep.'],opts:['A) The importance of sleep and how to improve it','B) Why coffee is good for you','C) History of beds','D) How to study at night'],c:['A','A']},
+{type:'short',title:'Task 5 · Short answer questions',items:[
+{s:'What chemical helps us sleep?',c:'a sleep chemical'},
+{s:'How can a person relax before bed?',c:'with a short walk'},
+{s:'What should people read instead of social media?',c:'a paper book'},
+{s:'What can help stop worrying before sleep?',c:'writing down tomorrow tasks'}]}
+]},
+{title:'Street Food Around the World',text:`Street food is popular in almost every country, and it is often the best way to taste the local culture. In Thailand, visitors can buy fresh noodles and fruit from small stands for just a few dollars. In Mexico, tacos are cooked in front of the customer and served with hot sauce. In Turkey, sellers carry trays of bread rings called simit and sell them in busy squares. Street food is usually cheaper than restaurant meals, and the dishes are often made from traditional family recipes that have been passed down for generations.
+
+However, travellers should be careful. It is better to choose stalls with many customers, because this usually means the food is fresh and the seller is trusted by local people. It also helps to eat food that is cooked in front of you and to avoid uncooked salads if you are not sure about the water. Many cities are now organising street food festivals to protect old recipes and to support small family businesses. These festivals also help tourists understand local traditions and can bring money to poorer neighbourhoods.
+
+Street food is not only about food. It is a way of life, and it brings people together. For many travellers, a simple meal from a street stall is the most memorable part of their trip.`,tasks:[
+{type:'mc',title:'Task 1 · Multiple choice',q:[
+{q:'Why is street food good for travellers?',o:['It is always very spicy','It shows the local culture','It is only found in Asia','It is served in restaurants'],c:1},
+{q:'How are tacos served in Mexico?',o:['In restaurants only','Without any sauce','Cooked in front of the customer','Only at night'],c:2},
+{q:'Why should travellers choose stalls with many customers?',o:['The food is cheaper','The stalls are bigger','The cooks are famous','The food is probably fresh'],c:3},
+{q:'What do street food festivals do?',o:['Close small businesses','Protect recipes and support families','Only sell drinks','Make food more expensive'],c:1}]},
+{type:'tf',title:'Task 2 · True / False / Not Given',items:[
+{s:'Street food is usually more expensive than restaurant food.',c:'F'},
+{s:'Many dishes come from traditional family recipes.',c:'T'},
+{s:'Street food festivals help to protect old recipes.',c:'T'},
+{s:'Thai street food is the best in the world.',c:'NS'},
+{s:'It helps to eat food cooked in front of you.',c:'T'}]},
+{type:'gap',title:'Task 3 · Complete the summary',text:'Street food is often {1} than restaurant food. In Thailand you can buy {2} and fruit. Travellers should choose stalls with many {3}, because the food is probably {4}. Street food {5} protect old recipes.',a:[['cheaper'],['noodles'],['customers'],['fresh'],['festivals']]},
+{type:'head',title:'Task 4 · Match the headings',paras:[
+'Paragraph 1: What street food is and examples from different countries.',
+'Paragraph 2: Safety tips and street food festivals.'],opts:['A) Street food culture and safety','B) Why restaurants are better','C) How to drive in Asia','D) The history of pizza'],c:['A','A']},
+{type:'short',title:'Task 5 · Short answer questions',items:[
+{s:'What is the name of Turkish bread rings?',c:'simit'},
+{s:'What should travellers avoid if they are not sure about the water?',c:'uncooked salads'},
+{s:'What do street food festivals support?',c:'small family businesses'},
+{s:'What brings people together?',c:'street food'}]}
+]},
+{title:'Cycling to Work',text:`In many big cities, traffic is a serious problem, so more people are choosing to cycle to work. Cycling is cheap, healthy and good for the environment. A cyclist does not need to pay for petrol or look for a parking space, and the exercise helps people stay fit without going to a gym. A short ride to work can also wake you up and improve your mood before you start the day. Some cities have built special cycle lanes to make the roads safer, and in places like Amsterdam and Copenhagen cycling is a normal part of everyday life.
+
+Even so, cyclists still face dangers, especially in bad weather or when drivers are not careful. Cyclists should always wear a helmet and use lights in the evening. It is also important to follow traffic rules, signal when you turn and keep a safe distance from large lorries. If more people left their cars at home, the air in our cities would be much cleaner, and there would be less noise and more space for people. For many short trips — to the shop, to school or to work — a bicycle is often faster than a car in heavy traffic.
+
+Some employers now offer showers and safe parking for cyclists, which encourages more people to ride. Cycling is not possible for everyone, but for many city dwellers it is a simple and enjoyable way to stay healthy.`,tasks:[
+{type:'mc',title:'Task 1 · Multiple choice',q:[
+{q:'Why are more people cycling to work?',o:['Traffic is a serious problem','Cars are forbidden','Bikes are free','Offices are closer'],c:0},
+{q:'What have some cities built?',o:['Parking lots','Special cycle lanes','New gyms','Bridges for cars'],c:1},
+{q:'What should cyclists do in the evening?',o:['Ride on the pavement','Use lights','Avoid the city','Wear headphones'],c:1},
+{q:'What would happen if more people left their cars at home?',o:['Roads would be noisier','Petrol would be cheaper','Cycling would be forbidden','The air would be cleaner'],c:3}]},
+{type:'tf',title:'Task 2 · True / False / Not Given',items:[
+{s:'Cyclists do not need to pay for petrol.',c:'T'},
+{s:'All drivers are careful with cyclists.',c:'F'},
+{s:'Cycling helps people stay fit.',c:'T'},
+{s:'In Amsterdam and Copenhagen cycling is normal.',c:'T'},
+{s:'Most city workers own two bicycles.',c:'NS'}]},
+{type:'gap',title:'Task 3 · Complete the summary',text:'Cycling is cheap, {1} and good for the environment. Some cities have built cycle {2} for safety. Cyclists should wear a {3} and use {4} in the evening. If more people cycled, the {5} would be cleaner.',a:[['healthy'],['lanes'],['helmet'],['lights'],['air']]},
+{type:'head',title:'Task 4 · Match the headings',paras:[
+'Paragraph 1: Why people cycle and what cities do.',
+'Paragraph 2: Safety rules and benefits for the city.'],opts:['A) Cycling: benefits and safety','B) Why cars are better','C) How to build a bike','D) The history of petrol'],c:['A','A']},
+{type:'short',title:'Task 5 · Short answer questions',items:[
+{s:'Name two cities where cycling is normal.',c:'Amsterdam and Copenhagen'},
+{s:'What should cyclists keep away from?',c:'large lorries'},
+{s:'What can a short ride improve before work?',c:'your mood'},
+{s:'What do some employers offer for cyclists?',c:'showers and safe parking'}]}
+]},
+{title:'Teenagers and Social Media',text:`Most teenagers spend several hours a day on social media. They use it to chat with friends, share photos and follow their favourite celebrities. Social media can be useful because it helps young people stay in touch, especially with friends who live far away, and it lets them learn about the world and find communities with the same interests. For some teenagers, online groups are an important source of support when they feel different or alone.
+
+However, it also has disadvantages. Some teenagers compare themselves with the perfect lives they see online and feel unhappy, because people usually post only the best moments of their lives. Others spend so much time on their phones that they do not get enough sleep or exercise, and their schoolwork suffers. Cyberbullying is another serious problem: cruel messages can reach a person at any time of day. Parents often worry, but forbidding phones is not always the answer, because teenagers need to learn how to use technology safely. Many experts suggest agreeing on simple rules together, such as no phones at the dinner table or after ten o'clock at night, and talking openly about what they see online.
+
+Schools can also help by teaching digital skills and by discussing online safety in class. Social media is not good or bad in itself — it depends on how we use it.`,tasks:[
+{type:'mc',title:'Task 1 · Multiple choice',q:[
+{q:'What do teenagers use social media for?',o:['Only for homework','To chat and share photos','To buy clothes','To find jobs'],c:1},
+{q:'Why do some teenagers feel unhappy online?',o:['They have no phones','Their parents are angry','They compare themselves with perfect online lives','They are bored at school'],c:2},
+{q:'What is cyberbullying?',o:['A type of sport','Cruel messages sent online','A school subject','A phone model'],c:1},
+{q:'What do many experts suggest?',o:['Deleting all accounts','Buying new phones','Using social media more','Agreeing on simple rules together'],c:3}]},
+{type:'tf',title:'Task 2 · True / False / Not Given',items:[
+{s:'Social media can help young people stay in touch.',c:'T'},
+{s:'All teenagers feel happy online.',c:'F'},
+{s:'Parents always forbid phones.',c:'F'},
+{s:'Cyberbullying can reach a person at any time.',c:'T'},
+{s:'Teenagers prefer video apps to photo apps.',c:'NS'}]},
+{type:'gap',title:'Task 3 · Complete the summary',text:'Teenagers use social media to {1} with friends. Some feel {2} when they compare themselves with others. Too much phone time can reduce {3} and exercise. Experts suggest simple {4} and talking openly about what they see {5}.',a:[['chat'],['unhappy'],['sleep'],['rules'],['online']]},
+{type:'head',title:'Task 4 · Match the headings',paras:[
+'Paragraph 1: Positive sides of social media.',
+'Paragraph 2: Problems and advice for parents.'],opts:['A) Problems and solutions','B) The benefits of social media','C) How to buy a phone','D) History of the internet'],c:['B','A']},
+{type:'short',title:'Task 5 · Short answer questions',items:[
+{s:'What do people usually post online?',c:'the best moments of their lives'},
+{s:'What can cruel messages cause?',c:'cyberbullying'},
+{s:'What should parents do together with teenagers?',c:'agree on simple rules'},
+{s:'How can schools help?',c:'teach digital skills and discuss online safety'}]}
+]},
+{title:'A Volunteer in Kenya',text:`Last summer, a nineteen-year-old student called Maria spent six weeks in Kenya as a volunteer. She worked in a small village school and helped the children learn English. At first it was difficult because she did not speak the local language and the classrooms were very basic. There were no computers, and sometimes there were not enough books for everyone. The school had only three classrooms for more than two hundred children, so lessons were often crowded.
+
+However, the children were friendly and enthusiastic, and Maria soon felt at home. In the evenings she played football with them and learned some words of Swahili. She also helped a local women's group sell hand-made baskets online, which brought extra money to several families. Maria says the experience changed her life. She became more confident and learned to solve problems without help. She now wants to become a teacher and plans to go back to Kenya after university.
+
+She advises other young people to volunteer if they can, but she says it is important to go with an organisation that really helps the local community and does not only take photos for social media. Volunteering, she says, is about listening and learning, not only about giving.`,tasks:[
+{type:'mc',title:'Task 1 · Multiple choice',q:[
+{q:'How long did Maria stay in Kenya?',o:['Six weeks','Six months','Two weeks','One year'],c:0},
+{q:'What was difficult at the beginning?',o:['The weather','The food','She did not speak the local language','The long journey'],c:2},
+{q:'What did Maria do in the evenings?',o:['Read books','Played football and learned Swahili','Went shopping','Watched TV'],c:1},
+{q:'What does Maria plan to do?',o:['Live in Kenya for ever','Study medicine','Write a book','Become a teacher and return to Kenya'],c:3}]},
+{type:'tf',title:'Task 2 · True / False / Not Given',items:[
+{s:'Maria worked in a village school.',c:'T'},
+{s:'The school had many computers.',c:'F'},
+{s:'Maria learned some words of Swahili.',c:'T'},
+{s:'She helped a women\'s group sell baskets online.',c:'T'},
+{s:'Maria\'s parents visited her in Kenya.',c:'NS'}]},
+{type:'gap',title:'Task 3 · Complete the summary',text:'Maria was a {1} in a village school in Kenya. At first it was {2} because the classrooms were basic. In the evenings she played {3} with the children. She helped a women\'s group sell {4} online. Now she wants to be a {5}.',a:[['volunteer'],['difficult'],['football'],['baskets'],['teacher']]},
+{type:'head',title:'Task 4 · Match the headings',paras:[
+'Paragraph 1: Maria\'s first weeks at the school.',
+'Paragraph 2: What she did, what she learned and her future plans.'],opts:['A) First impressions and challenges','B) How to travel to Kenya','C) The history of Swahili','D) Why volunteering is easy'],c:['A','A']},
+{type:'short',title:'Task 5 · Short answer questions',items:[
+{s:'How many classrooms did the school have?',c:'three classrooms'},
+{s:'What did Maria learn to do without help?',c:'solve problems'},
+{s:'What organisation should volunteers choose?',c:'one that really helps the local community'},
+{s:'What is volunteering about according to Maria?',c:'listening and learning'}]}
+]},
+{title:'The History of Chocolate',text:`Chocolate has a long and interesting history. More than three thousand years ago, people in Central America made a bitter drink from cocoa beans. It was not sweet, and only rich and important people could drink it. The beans were so valuable that they were sometimes used as money. When Spanish explorers brought cocoa to Europe in the sixteenth century, they added sugar, and the new drink quickly became fashionable among wealthy families.
+
+Solid chocolate appeared much later, in the nineteenth century, when new machines made it possible to produce bars cheaply. Soon chocolate factories opened in many European cities, and chocolate became a popular gift. Today people around the world eat millions of tons of chocolate every year. Some scientists even say that dark chocolate can be good for the heart if we eat it in small quantities, because it contains substances that help blood flow. However, most chocolate products also contain a lot of sugar and fat, so it is still a food to enjoy in moderation.
+
+Chocolate is also an important industry. Millions of farmers in Africa, Asia and South America grow cocoa, and many countries depend on this crop. Next time you eat a chocolate bar, remember its long journey from a tropical tree to your table.`,tasks:[
+{type:'mc',title:'Task 1 · Multiple choice',q:[
+{q:'What was the first chocolate drink like?',o:['Sweet and hot','Bitter','Cold and sour','Very cheap'],c:1},
+{q:'What were cocoa beans sometimes used as?',o:['Money','Medicine','Clothes','Building material'],c:0},
+{q:'What did Europeans add to the drink?',o:['Milk','Honey','Salt','Sugar'],c:3},
+{q:'What made chocolate bars cheaper in the nineteenth century?',o:['New machines','Better roads','More farmers','Lower taxes'],c:0}]},
+{type:'tf',title:'Task 2 · True / False / Not Given',items:[
+{s:'The first chocolate drink was sweet.',c:'F'},
+{s:'Spanish explorers brought cocoa to Europe.',c:'T'},
+{s:'Chocolate bars were invented in the twelfth century.',c:'F'},
+{s:'Dark chocolate may be good for the heart in small quantities.',c:'T'},
+{s:'Swiss chocolate is the most famous in the world.',c:'NS'}]},
+{type:'gap',title:'Task 3 · Complete the summary',text:'Long ago, people in Central America made a {1} drink from cocoa beans. Spanish explorers added {2} in the sixteenth century. {3} chocolate appeared in the nineteenth century, and dark chocolate may be good for the {4}. Most chocolate contains a lot of sugar and {5}.',a:[['bitter'],['sugar'],['solid'],['heart'],['fat']]},
+{type:'head',title:'Task 4 · Match the headings',paras:[
+'Paragraph 1: The first chocolate drink and its journey to Europe.',
+'Paragraph 2: Solid chocolate, modern chocolate and health.'],opts:['A) From bitter drink to modern chocolate','B) How to grow cocoa','C) The history of sugar','D) Why chocolate is bad'],c:['A','A']},
+{type:'short',title:'Task 5 · Short answer questions',items:[
+{s:'How long ago did people make the first chocolate drink?',c:'more than three thousand years ago'},
+{s:'Where do millions of farmers grow cocoa?',c:'in Africa, Asia and South America'},
+{s:'What do many countries depend on?',c:'cocoa'},
+{s:'What should we remember when we eat chocolate?',c:'its long journey'}]}
+]},
+{title:'Online Shopping',text:`Online shopping has changed the way we buy things. Instead of visiting crowded shops, customers can choose products on a website and receive them at home a few days later. Prices are often lower online, and it is easy to compare different shops and read reviews from other buyers. For busy people, this saves a lot of time, and people who live far from big cities can buy things that are not available in local shops.
+
+On the other hand, you cannot try clothes on or check the quality before you pay, so many customers have to return things that do not fit. Delivery can also be late, especially during holidays, and too much packaging is bad for the environment. Some people worry about the security of their personal data, and small local shops often lose customers to big websites. Despite these problems, online shopping grows every year, and many traditional shops now sell online as well as in their buildings.
+
+Some companies now offer free returns and same-day delivery to attract more customers, and new apps even let you try on clothes using a virtual model. Online shopping will continue to change, but for now it is simply another choice for buyers.`,tasks:[
+{type:'mc',title:'Task 1 · Multiple choice',q:[
+{q:'What is one advantage of online shopping?',o:['It is always faster than a shop','Prices are often lower','You can try things on','There is no packaging'],c:1},
+{q:'Why do some customers return products?',o:['They arrive too early','They are too cheap','They do not fit','They are free'],c:2},
+{q:'What is said about the environment?',o:['Delivery uses no petrol','Shops are worse','Online shops plant trees','Too much packaging is bad for it'],c:3},
+{q:'What do some people worry about?',o:['The security of their personal data','The weather','Their neighbours','The price of petrol'],c:0}]},
+{type:'tf',title:'Task 2 · True / False / Not Given',items:[
+{s:'Customers can read reviews from other buyers.',c:'T'},
+{s:'You can try clothes on before buying online.',c:'F'},
+{s:'Online shopping is becoming less popular.',c:'F'},
+{s:'Small local shops often lose customers to big websites.',c:'T'},
+{s:'Most customers shop online at night.',c:'NS'}]},
+{type:'gap',title:'Task 3 · Complete the summary',text:'Online customers can compare shops and read {1}. It saves {2} for busy people. However, you cannot {3} clothes on, and too much {4} is bad for the environment. Some people worry about the security of their personal {5}.',a:[['reviews'],['time'],['try'],['packaging'],['data']]},
+{type:'head',title:'Task 4 · Match the headings',paras:[
+'Paragraph 1: Advantages of online shopping.',
+'Paragraph 2: Disadvantages and the future.'],opts:['A) Advantages and disadvantages of online shopping','B) How to open a shop','C) The history of money','D) Why shops are better'],c:['A','A']},
+{type:'short',title:'Task 5 · Short answer questions',items:[
+{s:'What can people who live far from cities buy online?',c:'things not available in local shops'},
+{s:'What do some companies offer to attract customers?',c:'free returns and same-day delivery'},
+{s:'What do new apps let you use to try on clothes?',c:'a virtual model'},
+{s:'What is online shopping for buyers?',c:'another choice'}]}
+]},
+{title:'Gardens in the City',text:`Many people who live in big cities do not have a garden, so they are creating green spaces on their balconies, roofs and even on empty land between buildings. These community gardens are becoming more popular every year. Neighbours grow vegetables, herbs and flowers together, and they share what they produce. In some cities there are waiting lists to get a small piece of land, because so many people want to grow their own food.
+
+Urban gardens make the air cleaner, keep buildings cooler in summer and give a home to birds and insects. They also bring people together, because working in the same garden helps neighbours become friends and support each other. Older people can teach children how plants grow, and families from different countries can share recipes and seeds. Gardening is not difficult. Beginners can start with easy plants such as tomatoes or lettuce and learn from more experienced gardeners. Even a few pots on a balcony can make a difference, and many schools now have small gardens where children learn about nature.
+
+In some cities, local councils give small grants to community gardens and provide tools and water. Urban gardening is a simple way to make cities greener and friendlier.`,tasks:[
+{type:'mc',title:'Task 1 · Multiple choice',q:[
+{q:'Where are people creating green spaces?',o:['Only in parks','On balconies, roofs and empty land','Inside shops','On the roads'],c:1},
+{q:'How do urban gardens help buildings?',o:['They keep them cooler in summer','They make them taller','They make them quieter','They save electricity in winter'],c:0},
+{q:'Which plants are good for beginners?',o:['Palm trees','Roses and orchids','Tomatoes and lettuce','Apple trees'],c:2},
+{q:'Why are there waiting lists in some cities?',o:['Many people want to grow food','Land is expensive','Gardens are dangerous','There are too many parks'],c:0}]},
+{type:'tf',title:'Task 2 · True / False / Not Given',items:[
+{s:'Neighbours share what they grow in community gardens.',c:'T'},
+{s:'Urban gardens make the air dirtier.',c:'F'},
+{s:'Gardening is very difficult for beginners.',c:'F'},
+{s:'Urban gardens give a home to birds and insects.',c:'T'},
+{s:'Community gardens are free in every city.',c:'NS'}]},
+{type:'gap',title:'Task 3 · Complete the summary',text:'In many cities, people grow vegetables on balconies and {1}. Urban gardens make the {2} cleaner and bring {3} together. Beginners can start with easy {4} such as tomatoes. Even a few {5} on a balcony can help.',a:[['roofs'],['air'],['neighbours'],['plants'],['pots']]},
+{type:'head',title:'Task 4 · Match the headings',paras:[
+'Paragraph 1: Where urban gardens are and how they work.',
+'Paragraph 2: Benefits and advice for beginners.'],opts:['A) Urban gardens: benefits and getting started','B) How to build a house','C) The history of farming','D) Why cities are dirty'],c:['A','A']},
+{type:'short',title:'Task 5 · Short answer questions',items:[
+{s:'What do neighbours grow together?',c:'vegetables, herbs and flowers'},
+{s:'Who can teach children how plants grow?',c:'older people'},
+{s:'What do local councils give to community gardens?',c:'small grants, tools and water'},
+{s:'What can make a difference on a balcony?',c:'a few pots'}]}
+]}
+];
+
+function liveUpd(){let d,b;
+ if(view==='reading'&&S.rcur){const r=RD[S.rcur-1],n=100+S.rcur;d=r.tasks.every((t,ti)=>isTaskDone(t.type,t,getAns(n,ti)));b=$('#rfin')}
+ else if(view==='lesson'&&WB[S.cur-1]){d=WB[S.cur-1].tasks.every((t,ti)=>isTaskDone(t.type,t,getAns(S.cur,ti)));b=$('#fin')}
+ if(b)b.disabled=!d}
+function readingView(){return S.rcur?readingDetail():readingList()}
+function readingList(){return `<h1>📰 Reading</h1><p class="sub">10 текстов уровня B1. К каждому тексту — 5 заданий. Слова в тексте кликабельны: нажмите, чтобы увидеть meaning, перевод и добавить в избранное.</p>`+RD.map((r,i)=>{const k='R'+(i+1),d=!!S.rdone[k];return `<button class="ls" data-act="ropen" data-n="${i+1}"><b>Reading ${i+1} · ${esc(r.title)}</b><em style="color:${d?'var(--ok)':'var(--wn)'}">${d?'Пройден ✓ '+S.rscores[k]+'%':'Не завершён'}</em></button>`}).join('')}
+function readingDetail(){const r=RD[S.rcur-1],n=100+S.rcur,show=!!S.rdone['R'+S.rcur];let ok=0,all=0;const an=r.tasks.reduce((s,t,ti)=>s+taskAnswered(t.type,t,getAns(n,ti)),0);
+ r.tasks.forEach((t,ti)=>{all+=taskMax(t.type,t);ok+=taskScore(t.type,t,getAns(n,ti))});
+ const done=r.tasks.every((t,ti)=>isTaskDone(t.type,t,getAns(n,ti))),wc=r.text.split(/\s+/).length;
+ return `<button class="btn g" data-act="rback">← Все тексты</button><h1 style="margin-top:14px">📰 Reading ${S.rcur}: ${esc(r.title)}</h1><p class="sub">B1 · ${wc} слов</p>
+ <div class="glass card"><p class="art" style="font-size:18px;line-height:1.75;max-width:none">${markWords(r.text)}</p></div>
+ <div class="glass card" style="margin-top:16px"><b>Прогресс:</b> ${show?ok+' / '+all+' баллов':'Отвечено: '+an+' / '+all} · ${show?'текст завершён ✓':done?'все задания выполнены ✓ — нажмите «Завершить текст»':'ответьте на все задания; результат и ответы откроются после завершения'}<div class="bar"><i style="width:${all?Math.round((show?ok:an)/all*100):0}%"></i></div></div>
+ ${r.tasks.map((t,ti)=>{const d=isTaskDone(t.type,t,getAns(n,ti));return `<div class="glass card" style="margin-top:16px"><h2 style="margin-top:0">${esc(t.title)}<span class="bg ${d?'g':'r'}">${d?'Готово ✓':'Не выполнено'}</span></h2>${TASK_RENDER[t.type](n,ti,t,show)}</div>`}).join('')}
+ <div style="margin-top:18px"><button class="btn" id="rfin" data-act="rdone" ${done?'':'disabled'}>Завершить текст</button><p class="sub" style="margin:8px 0 0">${done?'Все задания выполнены — можно завершать ✓':'Выполните все задания, чтобы завершить текст.'}</p></div>`}
+
+/* ================= NAV ================= */
+const NAV=[['dash','📊 Мой Прогресс'],['lessons','📚 Уроки'],['listening','🎧 Listening'],['reading','📰 Reading'],['dict','📖 Словарь'],['books','🎬 Books'],['set','⚙️ Настройки и Профиль']];
+function buildNav(){$('#nav').innerHTML=NAV.map(([k,t])=>`<button data-v="${k}">${tr(t)}</button>`).join('')}buildNav();
+function side(){buildNav();applyStatic();$('#th').textContent=tr(S.theme==='light'?'🌙 Тёмная тема':'☀️ Светлая тема');$('#pn').textContent=S.name||tr('Гость');$('#av').style.backgroundImage=S.av?`url(${S.av})`:'';$('#av').textContent=S.av?'':(S.name||'?')[0].toUpperCase();$('#pl').textContent=tr('Уровень B1');$('#ps').textContent=tr('🔥 '+S.streak+' дн. подряд');
+ document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===view))}
+function render(){const m=$('#main');m.classList.remove('fade');void m.offsetWidth;m.classList.add('fade');
+ if(view==='books'&&S.bookId){m.innerHTML=tr(bookDetail())}else{const fn={dash,lessons:list,lesson,listening,reading:readingView,dict:dictView,books:booksGrid,set}[view];m.innerHTML=tr(fn?fn():'')}
+ side()}
+function go(v){if(v==='chat'){chat(true);$('aside').classList.remove('open');return}view=v;if(v!=='books')S.bookId=null;if(v==='reading')S.rcur=null;if(v==='listening')S.lcur=null;if(rec)rec.stop();$('aside').classList.remove('open');render()}
+$('#nav').onclick=e=>{const b=e.target.closest('button');if(b)go(b.dataset.v)};
+$('#th').onclick=()=>{S.theme=S.theme==='light'?'dark':'light';document.documentElement.dataset.theme=S.theme;save();side()};
+$('#burger').onclick=()=>$('aside').classList.toggle('open');
+
+/* ================= EVENTS ================= */
+$('#main').addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(!b)return;const a=b.dataset.act;
+ if(a==='open'){S.cur=+b.dataset.n;save();go('lesson')}
+ else if(a==='cont'){S.cur=(function(){for(let i=1;i<=10;i++)if(!S.done['B1-'+i])return i;return 10})();save();go('lesson')}
+ else if(a==='ans'){const n=+b.dataset.n,ti=+b.dataset.t,k=+b.dataset.k,v=isNaN(+b.dataset.v)?b.dataset.v:+b.dataset.v;const aa=getAns(n,ti);aa[k]=v;save();render()}
+ else if(a==='done'){const wb=WB[S.cur-1];const completed=wb.tasks.every((task,ti)=>isTaskDone(task.type,task,getAns(S.cur,ti)));if(!completed)return toast('Выполните все задания');let ok=0,all=0;wb.tasks.forEach((task,ti)=>{all+=taskMax(task.type,task);ok+=taskScore(task.type,task,getAns(S.cur,ti))});S.scores[K()]=Math.round(ok/all*100);S.done[K()]=1;save();toast('Урок завершён! Ответы открыты ✓');render()}
+ else if(a==='ropen'){S.rcur=+b.dataset.n;save();render();$('#main').scrollTo(0,0)}
+ else if(a==='rback'){S.rcur=null;save();render();$('#main').scrollTo(0,0)}
+ else if(a==='rdone'){const r=RD[S.rcur-1],n=100+S.rcur;if(!r.tasks.every((t,ti)=>isTaskDone(t.type,t,getAns(n,ti))))return toast('Выполните все задания');let ok=0,all=0;r.tasks.forEach((t,ti)=>{all+=taskMax(t.type,t);ok+=taskScore(t.type,t,getAns(n,ti))});S.rscores['R'+S.rcur]=Math.round(ok/all*100);S.rdone['R'+S.rcur]=1;save();toast('Текст пройден! Ответы открыты ✓');render()}
+ else if(a==='word'){openWordPop(b.dataset.w)}
+ else if(a==='book'){S.bookId=b.dataset.id;save();render()}
+ else if(a==='books'){S.bookId=null;save();render()}
+ else if(a==='flip'){
+  const card=b.closest('.flip');const w=b.dataset.w;const k=w.toLowerCase();
+  card.classList.toggle('open');
+  if(card.classList.contains('open')&&!S.words[k]){
+    ensureWord(w).then(()=>{
+      const info=S.words[k]||{};
+      const back=card.querySelector('.face.back');
+      if(back)setTimeout(()=>{back.innerHTML=tr(back.innerHTML)},0),back.innerHTML=`<b>${esc(w)}</b>
+        <span class="meaning">${esc(info.meaning||'—')}</span>
+        <span class="kk">${esc(info.kk||'—')}</span>
+        <div class="rowflex">
+          <button class="btn g" data-act="wspeak" data-w="${esc(w)}">🔊 EN</button>
+          <button class="btn g" data-act="wunfav" data-w="${esc(w)}">✕ Убрать</button>
+        </div>`;
+    });
+  }
+ }
+ else if(a==='vset'){const k=b.dataset.k,inp=document.getElementById('vin-'+k),v=(inp?inp.value:'').trim();if(!ytId(v)){toast('Неверная ссылка YouTube');return}S.vids[k]=v;save();render()}
+ else if(a==='vclear'){delete S.vids[b.dataset.k];save();render()}
+ else if(a==='lopen'){S.lcur=+b.dataset.n;save();render();$('#main').scrollTo(0,0)}
+ else if(a==='lback'){if(rec)rec.stop();S.lcur=null;save();render()}
+ else if(a==='mic'){toggleMic(+b.dataset.n)}
+ else if(a==='mclear'){const n=+b.dataset.n;S.lanswers[n]='';save();const t=document.querySelector('[data-la="'+n+'"]');if(t)t.value=''}
+ else if(a==='lang'){S.lang=LANGS[(LANGS.indexOf(S.lang)+1)%LANGS.length];save();$('#msgs').innerHTML='';if($('#chat').classList.contains('open'))chat(true);render()}
+ else if(a==='gemall'){translateAllFav()}
+ else if(a==='favclear'){if(confirm(tr('Очистить избранное?'))){S.fav={};save();render()}}
+ else if(a==='reset'){if(confirm(tr('Удалить весь прогресс?'))){localStorage.removeItem('aura');location.reload()}}});
+$('#wordmod').addEventListener('click',e=>{
+ const b=e.target.closest('[data-act]');if(!b)return;const a=b.dataset.act;
+ if(a==='wclose')closeWordPop();
+ else if(a==='wspeak')speakEN(b.dataset.w);
+ else if(a==='wtoggle'){const w=b.dataset.w;const k=w.toLowerCase();S.fav[k]=!S.fav[k];save();toast(S.fav[k]?'★ Добавлено в избранное':'☆ Убрано из избранного');renderWordPop(w)}
+ else if(a==='wrefresh'){const w=b.dataset.w;ensureWord(w,true).then(()=>openWordPop(w))}
+ else if(a==='wunfav'){const w=b.dataset.w;delete S.fav[w.toLowerCase()];save();closeWordPop();render()}
+});
+$('#wordmod').addEventListener('click',e=>{if(e.target.id==='wordmod')closeWordPop()});
+$('#main').addEventListener('input',e=>{const el=e.target;
+ if(el.id==='nm'){S.name=el.value.trim();save();side()}
+ else if(el.dataset.bq!==undefined){if(!S.bq[S.bookId])S.bq[S.bookId]={};S.bq[S.bookId][+el.dataset.bq]=el.value;save()}
+ else if(el.dataset.la!==undefined){S.lanswers[+el.dataset.la]=el.value;save()}
+ else{const map=[['g','data-g'],['tfrm','data-tfrm'],['ins','data-ins'],['rep','data-rep'],['wf','data-wf'],['mat','data-mat'],['err','data-err'],['cmp','data-cmp'],['read','data-read'],['head','data-head'],['con','data-con'],['mod','data-mod'],['pas','data-pas'],['caus','data-caus'],['wish','data-wish'],['pref','data-pref'],['rel','data-rel'],['link','data-link'],['qtag','data-qtag'],['sa','data-sa']];
+  for(const [key,attr] of map){if(el.hasAttribute(attr)){const n=+el.dataset.n,ti=+el.dataset.t,i=+el.getAttribute(attr);const aa=getAns(n,ti);aa[i]=el.value;save();liveUpd();break}}}});
+
+async function translateAllFav(){
+  const keys=Object.keys(S.fav);
+  if(!keys.length)return toast('Избранное пусто');
+  const need=keys.filter(w=>!S.words[w.toLowerCase()]?.meaning);
+  if(!need.length)return toast('Все слова уже переведены ✓');
+  toast('Перевод '+need.length+' слов…');
+  const r=await geminiBatch(need);
+  if(r.error){await Promise.all(need.map(w=>ensureWord(w)))}
+  else{(r.items||[]).forEach(it=>{if(!it||!it.word)return;const k=String(it.word).toLowerCase();if(it.meaning&&it.kk)S.words[k]={meaning:it.meaning,kk:it.kk,ts:Date.now()}});
+    const missing=need.filter(w=>!S.words[w.toLowerCase()]?.meaning);if(missing.length)await Promise.all(missing.map(w=>ensureWord(w)));save()}
+  render();toast('Готово ✓');
+}
+function speakEN(txt){if(!window.speechSynthesis)return toast('Озвучка не поддерживается');speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(txt);u.lang='en-US';u.rate=.9;speechSynthesis.speak(u)}
+
+/* ================= ONBOARDING ================= */
+function onboard(){const o=$('#ob');o.style.display='grid';
+ o.innerHTML=tr(`<div class="glass"><h1>Добро пожаловать в Bilimup ✦</h1><p class="sub">Введите полное ФИО — его увидит преподаватель.</p><input class="nm" id="on" placeholder="Фамилия Имя Отчество" autocomplete="name"><button class="btn" id="o1" style="width:100%">Продолжить →</button></div>`);
+ $('#o1').onclick=()=>{const nm=$('#on').value.trim();if(nm.split(/\s+/).length<2)return toast('Введите полное ФИО');S.name=nm;S.on=true;save();introScreen()};
+ if(S.name)$('#on').value=S.name}
+function introScreen(){const o=$('#ob');o.style.display='grid';
+ o.innerHTML=tr(`<div class="glass"><h1>✦ Introduction to the course</h1><div class="glass card" style="margin:10px 0"><h3>🎯 Main goals</h3><ul style="margin:6px 0 0 18px"><li>B1 grammar: articles, tenses, conditionals, passive, reported speech, relative clauses.</li><li>Reading comprehension: multiple choice, True/False/NS, matching headings, summary, short answers.</li><li>Writing: gap filling, transformations, word formation, reported speech.</li><li>Listening: separate catalog with video + task for every lesson.</li><li>Vocabulary: words are clickable — meaning (Gemini) + Kazakh translation + audio.</li></ul></div><div class="glass card" style="margin:10px 0"><h3>🧭 How we will learn</h3><ul style="margin:6px 0 0 18px"><li>Each lesson = video + Grammar Focus + 4 tasks from the workbook.</li><li>Answers are revealed only after ALL tasks in the lesson are completed.</li><li>Add words to favourites with ☆; review them as flashcards in 📖 Словарь.</li><li>All lessons are open — you choose your pace.</li></ul></div><button class="btn" id="o2" style="width:100%;margin-top:6px">Продолжить →</button></div>`);
+ $('#o2').onclick=()=>{S.introSeen=true;save();o.style.display='none';view='lessons';render()}}
+
+/* ================= AI (только FAB) ================= */
+function chat(open){const c=$('#chat');c.classList.toggle('open',open===undefined?!c.classList.contains('open'):open);if(c.classList.contains('open')&&!$('#msgs').children.length)say('b','Привет! Я Bilimup AI. Объясню грамматику и дам подсказки, но готовые ответы на задания не выдаю — вы справитесь сами 💪')}
+function say(w,x){const d=document.createElement('div');d.className='m '+w;d.textContent=w==='b'?tr(x):x;$('#msgs').append(d);$('#msgs').scrollTop=1e9}
+function tutor(m){const l=m.toLowerCase();if(/ответ|answer|solution|реши|решени|какой вариант|правильн|что вписать|which option/.test(l))return 'Прямой ответ я не дам — так знание не закрепится. Посмотрите Grammar Focus урока и попробуйте ещё раз.';if(/present|настоящ/.test(l))return 'Present Simple — привычки и факты: I work, he works. Present Continuous — сейчас: I am working.';if(/past|прошед/.test(l))return 'Past Simple — законченное действие: worked, went. Past Continuous — процесс: was working. Past Perfect — до другого действия: had worked.';if(/article|артикл/.test(l))return 'a/an — первое упоминание; the — известный предмет; без артикля — общие понятия во мн. числе.';if(/passive|пассив/.test(l))return 'Passive: be + V3. The bridge was built. Causative: have/get + object + V3.';if(/conditional|условн/.test(l))return '1st: If + Present, will + V. 2nd: If + Past, would + V. 3rd: If + Past Perfect, would have + V3.';if(/привет|hello|hi\b/.test(l))return 'Привет! С чем помочь: грамматика, задание или эссе?';return 'Подсказка: откройте урок, прочитайте Grammar Focus и выполните задания по порядку. Ответы откроются после выполнения всех заданий.'}
+function send(){const i=$('#ci'),m=i.value.trim();if(!m)return;i.value='';say('u',m);setTimeout(()=>say('b',tutor(m)),350)}
+$('#fab').onclick=()=>chat();$('#cs').onclick=send;$('#ci').onkeydown=e=>{if(e.key==='Enter')send()};
+
+/* ================= START ================= */
+if(!S.on)onboard();else if(!S.introSeen)introScreen();else render();
+</script>
+</body>
+</html>
